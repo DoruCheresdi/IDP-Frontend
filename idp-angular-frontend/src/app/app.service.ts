@@ -15,7 +15,7 @@ export class AppService {
    public jwtHelper = new JwtHelperService();
    public clientId = 'jwtClient';
    public organization = "none";
-   public redirectUri = 'http://localhost:8084/';
+   public redirectUri = 'http://idp-auth-service:8084/';
 
   constructor(
     private _http: HttpClient){}
@@ -29,7 +29,7 @@ export class AppService {
     params.append('code',code);
 
     let headers = new HttpHeaders({'Content-type': 'application/x-www-form-urlencoded; charset=utf-8', 'Authorization': 'Basic '+btoa(this.clientId+":secret")});
-     this._http.post('http://localhost:8083/auth/realms/baeldung/protocol/openid-connect/token', params.toString(), { headers: headers })
+     this._http.post('http://idp-auth-service:8083/auth/realms/baeldung/protocol/openid-connect/token', params.toString(), { headers: headers })
     .subscribe(
       data => this.saveToken(data),
       err => alert('Invalid Credentials')
@@ -41,7 +41,7 @@ export class AppService {
     Cookie.set("access_token", token.access_token, expireDate);
     console.log('Obtained Access token');
     this.getOrganization();
-    window.location.href = 'http://localhost:8084';
+    window.location.href = 'http://idp-auth-service:8084';
   }
 
   getResource(resourceUrl: any) : Observable<any>{
