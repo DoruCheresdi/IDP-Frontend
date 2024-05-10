@@ -50,6 +50,12 @@ export class AppService {
       .pipe(catchError((error:any) => throwError(error.json().error || 'Server error')));
   }
 
+    postResource(resourceUrl: any, body: any) : Observable<any>{
+        var headers = new HttpHeaders({ 'Authorization': 'Bearer '+Cookie.get('access_token')});
+        return this._http.post(resourceUrl, body, { headers: headers })
+            .pipe(catchError((error:any) => throwError(error.json().error || 'Server error')));
+    }
+
   checkCredentials(){
     return Cookie.check('access_token');
   }
