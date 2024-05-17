@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {AppService} from "./app.service";
+import {AuthService} from "./services/auth.service";
 
 @Component({
   selector: 'app-root',
@@ -10,9 +10,8 @@ export class AppComponent {
   title = 'idp-angular-frontend';
   public organization = "";
 
-  constructor(private service: AppService) { }
+  constructor(private service: AuthService) { }
 
   ngOnInit() {
-    this.organization = this.service.getOrganization();
   }
 }
