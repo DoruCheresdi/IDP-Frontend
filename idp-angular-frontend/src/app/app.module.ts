@@ -8,13 +8,16 @@ import { HomeComponent } from "./home.component";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { AuthService } from "./services/auth.service";
 import { LoginComponent } from './pages/general/login/login.component';
-import { FormsModule } from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AuthBearerInterceptor} from "./services/auth-bearer.interceptor";
 import { ButtonModule } from 'primeng/button';
 import { TopHeaderComponent } from './components/top-header/top-header.component';
 import {MenubarModule} from 'primeng/menubar';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {CardModule} from "primeng/card";
+import {InputTextModule} from "primeng/inputtext";
+import {PasswordModule} from "primeng/password";
+import {provideAnimations} from "@angular/platform-browser/animations";
 
 @NgModule({
     declarations: [
@@ -26,16 +29,20 @@ import {CardModule} from "primeng/card";
     ],
     imports: [
         BrowserModule,
+        ReactiveFormsModule,
+        InputTextModule,
         FormsModule,
         HttpClientModule,
         AppRoutingModule,
         ButtonModule,
         NgbModule,
         MenubarModule,
-        CardModule
+        CardModule,
+        PasswordModule
     ],
     providers: [
         AuthService,
+        provideAnimations(),
         {provide: HTTP_INTERCEPTORS, useClass: AuthBearerInterceptor, multi:true}
     ],
     bootstrap: [AppComponent]
