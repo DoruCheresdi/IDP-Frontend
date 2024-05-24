@@ -14,6 +14,7 @@ import { ButtonModule } from 'primeng/button';
 import { TopHeaderComponent } from './components/top-header/top-header.component';
 import {MenubarModule} from 'primeng/menubar';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {CardModule} from "primeng/card";
 
 @NgModule({
     declarations: [
@@ -30,7 +31,8 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
         AppRoutingModule,
         ButtonModule,
         NgbModule,
-        MenubarModule
+        MenubarModule,
+        CardModule
     ],
     providers: [
         AuthService,

@@ -5,15 +5,7 @@ import {Router} from "@angular/router";
 @Component({
     selector: 'home-header',
     providers: [AuthService],
-  template: `<div class="container" >
-    <button *ngIf="!isLoggedIn" class="btn btn-primary" (click)="login()" type="submit">Login</button>
-    <div *ngIf="isLoggedIn" class="content">
-        <span>Welcome !!</span>
-        <a class="btn btn-default pull-right"(click)="logout()" href="#">Logout</a>
-        <br/>
-        <foo-details></foo-details>
-    </div>
-</div>`
+  template: ``
 })
 
 export class HomeComponent {
