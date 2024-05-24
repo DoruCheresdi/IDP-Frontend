@@ -18,6 +18,8 @@ import {CardModule} from "primeng/card";
 import {InputTextModule} from "primeng/inputtext";
 import {PasswordModule} from "primeng/password";
 import {provideAnimations} from "@angular/platform-browser/animations";
+import { RegisterComponent } from './pages/general/register/register.component';
+import {DividerModule} from "primeng/divider";
 
 @NgModule({
     declarations: [
@@ -25,7 +27,8 @@ import {provideAnimations} from "@angular/platform-browser/animations";
         HomeComponent,
         FooComponent,
         LoginComponent,
-        TopHeaderComponent
+        TopHeaderComponent,
+        RegisterComponent
     ],
     imports: [
         BrowserModule,
@@ -38,7 +41,8 @@ import {provideAnimations} from "@angular/platform-browser/animations";
         NgbModule,
         MenubarModule,
         CardModule,
-        PasswordModule
+        PasswordModule,
+        DividerModule
     ],
     providers: [
         AuthService,

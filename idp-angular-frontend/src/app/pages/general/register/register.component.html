@@ -1,0 +1,49 @@
+<p-card header="Register" styleClass="user-form" class="flex justify-content-center mt-8">
+    <form [formGroup]="userForm" (ngSubmit)="register()" novalidate>
+        <div class="field">
+            <label for="email" class="block">Email</label>
+            <input id="email" type="text" pInputText placeholder="Email" formControlName="email"
+                   class="w-full"/>
+            <small class="p-error block" *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.dirty">
+                Email is required</small>
+        </div>
+
+        <div class="field">
+            <label for="firstName" class="block">Firstname</label>
+            <input id="firstName" type="text" pInputText placeholder="Firstname" formControlName="firstName"
+                   class="w-full"/>
+            <small class="p-error block" *ngIf="userForm.get('firstname')?.invalid && userForm.get('firstname')?.dirty">
+                Firstname is required</small>
+        </div>
+
+        <div class="field">
+            <label for="lastName" class="block">Lastname</label>
+            <input id="lastName" type="text" pInputText placeholder="Lastname" formControlName="lastName"
+                   class="w-full"/>
+            <small class="p-error block" *ngIf="userForm.get('lastname')?.invalid && userForm.get('lastname')?.dirty">
+                Lastname is required</small>
+        </div>
+
+        <div class="field w-full" >
+            <label for="passwordd" class="block">Password</label>
+            <p-password id="passwordd" formControlName="password"
+                        [style]="{'width':'100%'}"
+                        [inputStyle]="{'width':'100%'}"
+                        [toggleMask]="true"
+            [strongRegex]="'^(?=.{3,})'">
+                <ng-template pTemplate="header">
+                    <h6>Pick a password</h6>
+                </ng-template>
+                <ng-template pTemplate="footer">
+                    <p-divider></p-divider>
+                    <p class="p-mt-2">Suggestions</p>
+                    <ul class="p-pl-2 p-ml-2 p-mt-0" style="line-height: 1.5">
+                        <li>Minimum 3 characters</li>
+                    </ul>
+                </ng-template>
+            </p-password>
+        </div>
+
+        <button pButton type="submit" label="Register"></button>
+    </form>
+</p-card>
