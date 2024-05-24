@@ -11,20 +11,26 @@ import { LoginComponent } from './pages/general/login/login.component';
 import { FormsModule } from "@angular/forms";
 import {AuthBearerInterceptor} from "./services/auth-bearer.interceptor";
 import { ButtonModule } from 'primeng/button';
+import { TopHeaderComponent } from './components/top-header/top-header.component';
+import {MenubarModule} from 'primeng/menubar';
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
     declarations: [
         AppComponent,
         HomeComponent,
         FooComponent,
-        LoginComponent
+        LoginComponent,
+        TopHeaderComponent
     ],
     imports: [
         BrowserModule,
         FormsModule,
         HttpClientModule,
         AppRoutingModule,
-        ButtonModule
+        ButtonModule,
+        NgbModule,
+        MenubarModule
     ],
     providers: [
         AuthService,
