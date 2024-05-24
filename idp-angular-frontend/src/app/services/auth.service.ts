@@ -7,6 +7,7 @@ import {UrlService} from "./url.service";
 import {Token} from "../model/token";
 import {AuthenticationRequest} from "../dtos/authentication-request";
 import {Router} from "@angular/router";
+import {EventService} from "./event.service";
 
 export class Foo {
     constructor(
@@ -21,7 +22,7 @@ export class AuthService {
     public authenticationPath = 'auth/authenticate';
 
     constructor(private http: HttpClient, private urlService: UrlService,
-                private router: Router){}
+                private router: Router, private eventService: EventService){}
 
     authenticate(email: string, password: string): void {
         const authenticationRequest = new AuthenticationRequest(email, password);
@@ -36,12 +37,13 @@ export class AuthService {
 
     successfulAuth(token: Token){
         this.saveToken(token);
+        this.eventService.loginEvent.emit();
         this.router.navigateByUrl('/');
     }
 
     saveToken(token: Token){
         Cookie.set("access_token", token.access_token);
-        window.location.href = this.urlService.frontendUrl;
+        // window.location.href = this.urlService.frontendUrl;
     }
 
     getResource(resourceUrl: any) : Observable<any>{
@@ -60,6 +62,7 @@ export class AuthService {
 
     logout() {
         Cookie.delete('access_token');
+        this.eventService.logoutEvent.emit();
         window.location.reload();
     }
 
