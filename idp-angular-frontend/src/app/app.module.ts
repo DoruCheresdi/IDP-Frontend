@@ -10,6 +10,7 @@ import { AuthService } from "./services/auth.service";
 import { LoginComponent } from './pages/general/login/login.component';
 import { FormsModule } from "@angular/forms";
 import {AuthBearerInterceptor} from "./services/auth-bearer.interceptor";
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
     declarations: [
@@ -22,7 +23,8 @@ import {AuthBearerInterceptor} from "./services/auth-bearer.interceptor";
         BrowserModule,
         FormsModule,
         HttpClientModule,
-        AppRoutingModule
+        AppRoutingModule,
+        ButtonModule
     ],
     providers: [
         AuthService,
