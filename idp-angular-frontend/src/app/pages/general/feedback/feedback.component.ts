@@ -48,8 +48,7 @@ export class FeedbackComponent implements OnInit {
             return;
         }
         this.feedbackService.getLastFeedback().subscribe({
-            next: feedback => this.lastFeedback = feedback,
-            error: _ => alert('Invalid Request')
+            next: feedback => this.lastFeedback = feedback
         });
     }
 
