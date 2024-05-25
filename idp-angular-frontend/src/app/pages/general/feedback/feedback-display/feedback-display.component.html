@@ -1,0 +1,27 @@
+<p-card [header]="header" styleClass="user-form" class="flex justify-content-center mt-8">
+    <div class="field">
+        <label for="id" class="block">id</label>
+        <input id="id" type="text" pInputText [value]="feedback.id"
+               class="w-full"/>
+    </div>
+    <div class="field">
+        <label for="satisfactionLevelSelect" class="block">satisfactionLevelSelect</label>
+        <input id="satisfactionLevelSelect" type="text" pInputText [value]="feedback.satisfactionLevelSelect"
+               class="w-full"/>
+    </div>
+    <div class="field">
+        <label for="expectationRadioButton" class="block">expectationRadioButton</label>
+        <input id="expectationRadioButton" type="text" pInputText [value]="feedback.expectationRadioButton"
+               class="w-full"/>
+    </div>
+    <div class="field">
+        <label for="improvementsCheckbox" class="block">improvementsCheckbox</label>
+        <input id="improvementsCheckbox" type="text" pInputText [value]="feedback.improvementsCheckbox"
+               class="w-full"/>
+    </div>
+    <div class="field">
+        <label for="comments" class="block">comments</label>
+        <input id="comments" type="text" pInputText [value]="feedback.comments"
+               class="w-full"/>
+    </div>
+</p-card>

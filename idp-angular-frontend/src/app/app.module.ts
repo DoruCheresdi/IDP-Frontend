@@ -9,7 +9,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { AuthService } from "./services/auth.service";
 import { LoginComponent } from './pages/general/login/login.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {AuthBearerInterceptor} from "./services/auth-bearer.interceptor";
+import {AuthBearerInterceptor} from "./services/extra/auth-bearer.interceptor";
 import { ButtonModule } from 'primeng/button';
 import { TopHeaderComponent } from './components/top-header/top-header.component';
 import {MenubarModule} from 'primeng/menubar';
@@ -20,6 +20,12 @@ import {PasswordModule} from "primeng/password";
 import {provideAnimations} from "@angular/platform-browser/animations";
 import { RegisterComponent } from './pages/general/register/register.component';
 import {DividerModule} from "primeng/divider";
+import { FeedbackComponent } from './pages/general/feedback/feedback.component';
+import { FeedbackDisplayComponent } from './pages/general/feedback/feedback-display/feedback-display.component';
+import {DropdownModule} from "primeng/dropdown";
+import {RadioButtonModule} from "primeng/radiobutton";
+import {CheckboxModule} from "primeng/checkbox";
+import {InputTextareaModule} from "primeng/inputtextarea";
 
 @NgModule({
     declarations: [
@@ -28,7 +34,9 @@ import {DividerModule} from "primeng/divider";
         FooComponent,
         LoginComponent,
         TopHeaderComponent,
-        RegisterComponent
+        RegisterComponent,
+        FeedbackComponent,
+        FeedbackDisplayComponent
     ],
     imports: [
         BrowserModule,
@@ -42,7 +50,11 @@ import {DividerModule} from "primeng/divider";
         MenubarModule,
         CardModule,
         PasswordModule,
-        DividerModule
+        DividerModule,
+        DropdownModule,
+        RadioButtonModule,
+        CheckboxModule,
+        InputTextareaModule
     ],
     providers: [
         AuthService,

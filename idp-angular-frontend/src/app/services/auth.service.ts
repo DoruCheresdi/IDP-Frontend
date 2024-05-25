@@ -56,7 +56,7 @@ export class AuthService {
             .pipe(catchError((error:any) => throwError( 'Server error')));
     }
 
-    checkCredentials(){
+    checkCredentials(): boolean {
         return Cookie.check('access_token');
     }
 

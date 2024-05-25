@@ -18,6 +18,8 @@ export class TopHeaderComponent {
 
     private REGISTER_LABEL = 'Register';
 
+    private FEEDBACK_LABEL = 'Feedback';
+
     loginItem: MenuItem = {
         label: this.LOGIN_LABEL,
         icon: 'pi pi-fw pi-lock',
@@ -36,16 +38,33 @@ export class TopHeaderComponent {
         routerLink: '/register'
     }
 
+    feedbackItem: MenuItem = {
+        label: this.FEEDBACK_LABEL,
+        icon: 'pi pi-fw pi-comment',
+        routerLink: '/feedback'
+    }
+
+    loggedInItems: MenuItem[] = [
+        this.logoutItem,
+        this.feedbackItem
+    ];
+
+    loogedOutItems: MenuItem[] = [
+        this.loginItem,
+        this.registerItem
+    ]
+
     constructor(private eventService: EventService,
                 private authService: AuthService) {
 
     }
 
     ngOnInit() {
-        this.items = [
-            this.loginItem,
-            this.registerItem
-        ];
+        if (this.authService.checkCredentials()) {
+            this.items = this.loggedInItems;
+        } else {
+            this.items = this.loogedOutItems;
+        }
         this.eventService.logoutEvent.subscribe(() => this.addLoginItemIfNotPresent());
         this.eventService.loginEvent.subscribe(() => this.addLogoutItemIfNotPresent());
     }
@@ -55,31 +74,10 @@ export class TopHeaderComponent {
     }
 
     addLoginItemIfNotPresent() {
-        const hasLoginItem = this.items?.some(item => item.label === this.LOGIN_LABEL);
-        if (!hasLoginItem) {
-            this.items?.push(this.loginItem);
-        }
-
-        // check if exists and add register item:
-        const hasRegisterItem = this.items?.some(item => item.label === this.REGISTER_LABEL);
-        if (!hasRegisterItem) {
-            this.items?.push(this.registerItem);
-        }
-
-        // remove logout item:
-        this.items = this.items?.filter(item => item.label !== this.LOGOUT_LABEL);
+        this.items = this.loogedOutItems;
     }
 
     addLogoutItemIfNotPresent() {
-        console.log('hello');
-        const hasLogoutItem = this.items?.some(item => item.label === this.LOGOUT_LABEL);
-        if (!hasLogoutItem) {
-            this.items?.push(this.logoutItem);
-        }
-
-        // remove login item:
-        this.items = this.items?.filter(item => item.label !== this.LOGIN_LABEL);
-        // remove register item:
-        this.items = this.items?.filter(item => item.label !== this.REGISTER_LABEL);
+        this.items = this.loggedInItems;
     }
 }

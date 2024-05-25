@@ -1,0 +1,62 @@
+<div class="flex justify-content-center">
+    <app-feedback-display *ngIf="lastFeedback"
+                          [feedback]="lastFeedback"
+                          header="Last Feedback">
+    </app-feedback-display>
+    <p-card header="Add Your Feedback!" styleClass="user-form ml-8" class="flex justify-content-center mt-8">
+        <form [formGroup]="feedbackForm" (ngSubmit)="submitFeedback()" novalidate>
+
+            <div class="field w-full" >
+                <label for="satisfaction" class="block">Satisfaction Level:</label>
+                <p-dropdown id="satisfaction"
+                            [options]="satisfactions"
+                            formControlName="satisfactionLevelSelect"
+                            [showClear]="true"
+                            placeholder="Select satisfaction level">
+                </p-dropdown>
+                <small class="p-error block" *ngIf="feedbackForm.get('satisfactionLevelSelect')?.invalid && feedbackForm.get('satisfactionLevelSelect')?.dirty">
+                    Satisfaction Level is required</small>
+            </div>
+
+            <div class="flex align-items-center">
+                <p>
+                    Expectation Level:
+                </p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+                <div *ngFor="let expectation of expectations" class="field-checkbox">
+                    <p-radioButton [inputId]="expectation" [value]="expectation" formControlName="expectationRadioButton"></p-radioButton>
+                    <label [for]="expectation" class="ml-2">{{ expectation }}</label>
+                </div>
+                <small class="p-error block" *ngIf="feedbackForm.get('expectationRadioButton')?.invalid && feedbackForm.get('expectationRadioButton')?.dirty">
+                    Expectation Level is required</small>
+            </div>
+
+
+            <div class="flex align-items-center">
+                <p>
+                    Improvements Needed:
+                </p>
+            </div>
+            <div class="flex align-items-center gap-2 mb-2">
+                <div *ngFor="let improvement of improvements" class="field-checkbox">
+                    <p-checkbox name="group1" [inputId]="improvement" [value]="improvement"
+                                [formControl]="feedbackForm.controls['improvementsCheckbox']">
+                    </p-checkbox>
+                    <label [for]="improvement">{{ improvement }}</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="comment" class="block">Comment</label>
+                <textarea id="comment" pInputTextarea placeholder="Add your comments here" formControlName="comments"
+                          class="w-full"
+                          rows="5">
+            </textarea>
+                <small class="p-error block" *ngIf="feedbackForm.get('comment')?.invalid && feedbackForm.get('comment')?.dirty">
+                    Comment is required</small>
+            </div>
+            <button pButton type="submit" label="Submit"></button>
+        </form>
+    </p-card>
+</div>

@@ -17,6 +17,6 @@ export class UserService {
 
     register(email: string, password: string, firstName: string, lastName: string): Observable<any> {
         const request = new RegisterRequest(email, password, firstName, lastName);
-        return this.http.post<Token>(this.urlService.getUrl(this.registerPath), request);
+        return this.http.post<any>(this.urlService.getUrl(this.registerPath), request);
     }
 }
