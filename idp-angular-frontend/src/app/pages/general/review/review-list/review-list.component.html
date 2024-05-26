@@ -1,0 +1,64 @@
+<p-table
+    [value]="reviews"
+    [paginator]="true"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [rowsPerPageOptions]="[5, 10, 20]"
+    [globalFilterFields]="['id', 'title', 'description', 'organisationId', 'stars']"
+    #dt1
+    selectionMode="single"
+    [(selection)]="selectedReview"
+    dataKey="id"
+>
+    <ng-template pTemplate="caption">
+        <div class="flex">
+            <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+            <span class="p-input-icon-left ml-auto">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" (input)="filterTable($event, dt1)" placeholder="Search keyword" />
+            </span>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th style="width:25%">Id</th>
+            <th style="width:25%">Title</th>
+            <th style="width:25%">Description</th>
+            <th style="width:25%">Stars</th>
+            <th style="width:25%">Organisation Id</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-review>
+        <tr [pSelectableRow]="review">
+            <td>{{ review.id }}</td>
+            <td>{{ review.title }}</td>
+            <td>{{ review.description }}</td>
+            <td>{{ review.stars }}</td>
+            <td>{{ review.organisationId }}</td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="paginatorleft">
+        <div class="flex">
+            <p-button type="button" icon="pi pi-plus" styleClass="p-button-text" (click)="addNewRow()"></p-button>
+            <p-button type="button" styleClass="p-button-text" class="ml-2"
+                      [disabled]="selectedReview === undefined"
+                      severity="warning"
+                      (click)="editRow()">
+                Edit
+            </p-button>
+            <p-button type="button" styleClass="p-button-text" class="ml-2"
+                      [disabled]="selectedReview === undefined"
+                      severity="danger"
+            (onClick)="showDeleteConfirmation()">
+                Delete
+            </p-button>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="paginatorright">
+        <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+    </ng-template>
+</p-table>
+<p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+<p-toast></p-toast>

@@ -13,6 +13,9 @@ import {AddOrganisationComponent} from "./pages/general/organisations-list/add-o
 import {
     EditOrganisationComponent
 } from "./pages/general/organisations-list/edit-organisation/edit-organisation.component";
+import {EditReviewComponent} from "./pages/general/review/edit-review/edit-review.component";
+import {ReviewListComponent} from "./pages/general/review/review-list/review-list.component";
+import {AddReviewComponent} from "./pages/general/review/add-review/add-review.component";
 
 // const routes: Routes = [{ path: '', component: HomeComponent, pathMatch: 'full' },
 //   {onSameUrlNavigation: 'reload'}];
@@ -25,7 +28,10 @@ import {
             { path: 'feedback', component: FeedbackComponent, canActivate: [isAuthenticatedGuard]},
             { path: 'org-list', component: OrganisationListComponent, canActivate: [isAuthenticatedGuard]},
             { path: 'organisation/add', component: AddOrganisationComponent, canActivate: [isAuthenticatedGuard]},
-            { path: 'organisation/edit', component: EditOrganisationComponent, canActivate: [isAuthenticatedGuard]}
+            { path: 'organisation/edit', component: EditOrganisationComponent, canActivate: [isAuthenticatedGuard]},
+            { path: 'review-list', component: ReviewListComponent, canActivate: [isAuthenticatedGuard]},
+            { path: 'add-review', component: AddReviewComponent, canActivate: [isAuthenticatedGuard]},
+            { path: 'review/edit', component: EditReviewComponent, canActivate: [isAuthenticatedGuard]}
         ],
         {onSameUrlNavigation: 'reload'})],
     exports: [RouterModule]

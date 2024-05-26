@@ -22,6 +22,8 @@ export class TopHeaderComponent {
 
     private ORG_LIST_LABEL = 'Organisations';
 
+    private REVIEW_LIST_LABEL = 'Reviews';
+
     loginItem: MenuItem = {
         label: this.LOGIN_LABEL,
         icon: 'pi pi-fw pi-lock',
@@ -52,10 +54,17 @@ export class TopHeaderComponent {
         routerLink: '/org-list'
     }
 
+    reviewListItem: MenuItem = {
+        label: this.REVIEW_LIST_LABEL,
+        icon: 'pi pi-fw pi-list',
+        routerLink: '/review-list'
+    }
+
     loggedInItems: MenuItem[] = [
         this.logoutItem,
         this.feedbackItem,
-        this.orgListItem
+        this.orgListItem,
+        this.reviewListItem
     ];
 
     loogedOutItems: MenuItem[] = [

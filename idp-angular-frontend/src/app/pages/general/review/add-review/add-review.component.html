@@ -1,0 +1,38 @@
+<p-card header="Register" styleClass="user-form" class="flex justify-content-center mt-8">
+    <form [formGroup]="addReviewForm" (ngSubmit)="addReview()" novalidate>
+        <div class="field">
+            <label for="stars" class="block">Stars</label>
+            <input id="stars" type="text" pInputText placeholder="Stars" formControlName="stars"
+                   class="w-full"/>
+            <small class="p-error block" *ngIf="addReviewForm.get('stars')?.invalid && addReviewForm.get('stars')?.dirty">
+                Stars is required</small>
+        </div>
+
+        <div class="field">
+            <label for="description" class="block">Description</label>
+            <input id="description" type="text" pInputText placeholder="Description" formControlName="description"
+                   class="w-full"/>
+            <small class="p-error block" *ngIf="addReviewForm.get('description')?.invalid && addReviewForm.get('description')?.dirty">
+                Description is required</small>
+        </div>
+
+
+        <div class="field">
+            <label for="title" class="block">Title</label>
+            <input id="title" type="text" pInputText placeholder="Title" formControlName="title"
+                   class="w-full"/>
+            <small class="p-error block" *ngIf="addReviewForm.get('title')?.invalid && addReviewForm.get('title')?.dirty">
+                Title is required</small>
+        </div>
+
+        <div class="field">
+            <label for="orgId" class="block">Organisation Id</label>
+            <input id="orgId" type="text" pInputText placeholder="Organisation Id" formControlName="orgId"
+                   class="w-full"/>
+            <small class="p-error block" *ngIf="addReviewForm.get('orgId')?.invalid && addReviewForm.get('orgId')?.dirty">
+                OrgId is required</small>
+        </div>
+
+        <button pButton type="submit" label="Add Review"></button>
+    </form>
+</p-card>

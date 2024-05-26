@@ -6,9 +6,9 @@ import {OrganisationService} from "../../../../services/organisation.service";
 import {OrganisationAddRequest} from "../../../../dtos/organisation-add-request";
 
 @Component({
-  selector: 'app-add-organisation',
-  templateUrl: './add-organisation.component.html',
-  styleUrls: ['./add-organisation.component.css']
+    selector: 'app-add-organisation',
+    templateUrl: './add-organisation.component.html',
+    styleUrls: ['./add-organisation.component.css']
 })
 export class AddOrganisationComponent {
 
@@ -18,9 +18,9 @@ export class AddOrganisationComponent {
         iban: ['', Validators.required]
     });
 
-        constructor(private organisationService: OrganisationService,
-    private fb: FormBuilder,
-    private router: Router) { }
+    constructor(private organisationService: OrganisationService,
+                private fb: FormBuilder,
+                private router: Router) { }
 
     addOrganisation(): void {
         if (!this.addOrganisationFrom.valid) {

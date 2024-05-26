@@ -33,6 +33,9 @@ import { EditOrganisationComponent } from './pages/general/organisations-list/ed
 import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {ToastModule} from "primeng/toast";
 import {ConfirmationService, MessageService} from "primeng/api";
+import { ReviewListComponent } from './pages/general/review/review-list/review-list.component';
+import { AddReviewComponent } from './pages/general/review/add-review/add-review.component';
+import { EditReviewComponent } from './pages/general/review/edit-review/edit-review.component';
 
 @NgModule({
     declarations: [
@@ -46,7 +49,10 @@ import {ConfirmationService, MessageService} from "primeng/api";
         FeedbackDisplayComponent,
         OrganisationListComponent,
         AddOrganisationComponent,
-        EditOrganisationComponent
+        EditOrganisationComponent,
+        ReviewListComponent,
+        AddReviewComponent,
+        EditReviewComponent
     ],
     imports: [
         BrowserModule,
