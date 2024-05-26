@@ -30,7 +30,7 @@
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-organisation>
-        <tr>
+        <tr [pSelectableRow]="organisation">
             <td>{{ organisation.id }}</td>
             <td>{{ organisation.name }}</td>
             <td>{{ organisation.iban }}</td>
@@ -41,11 +41,13 @@
         <div class="flex">
             <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
             <p-button type="button" styleClass="p-button-text" class="ml-2"
-                      [disabled]="selectedOrganisation !== undefined">
+                      [disabled]="selectedOrganisation === undefined"
+                      severity="warning">
                 Edit
             </p-button>
             <p-button type="button" styleClass="p-button-text" class="ml-2"
-                      [disabled]="selectedOrganisation !== undefined"
+                      [disabled]="selectedOrganisation === undefined"
+                      severity="danger"
             (onClick)="deleteSelectedRow()">
                 Delete
             </p-button>
