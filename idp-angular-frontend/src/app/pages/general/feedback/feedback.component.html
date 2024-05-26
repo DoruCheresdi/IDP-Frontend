@@ -1,9 +1,5 @@
 <div class="flex justify-content-center">
-    <app-feedback-display *ngIf="lastFeedback"
-                          [feedback]="lastFeedback"
-                          header="Last Feedback">
-    </app-feedback-display>
-    <p-card header="Add Your Feedback!" styleClass="user-form ml-8" class="flex justify-content-center mt-8">
+    <p-card header="Add Your Feedback!" styleClass="user-form" class="flex justify-content-center mt-8">
         <form [formGroup]="feedbackForm" (ngSubmit)="submitFeedback()" novalidate>
 
             <div class="field w-full" >
@@ -59,4 +55,9 @@
             <button pButton type="submit" label="Submit"></button>
         </form>
     </p-card>
+    <app-feedback-display *ngIf="lastFeedback"
+                          [feedback]="lastFeedback"
+                          header="Last Feedback"
+                          class="ml-8">
+    </app-feedback-display>
 </div>

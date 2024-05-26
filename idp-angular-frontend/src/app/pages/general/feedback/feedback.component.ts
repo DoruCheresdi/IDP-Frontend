@@ -72,4 +72,6 @@ export class FeedbackComponent implements OnInit {
             }
         );
     }
+
+    protected readonly undefined = undefined;
 }
