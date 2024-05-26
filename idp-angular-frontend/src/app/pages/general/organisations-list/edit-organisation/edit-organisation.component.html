@@ -1,0 +1,37 @@
+<p-card header="Register" styleClass="user-form" class="flex justify-content-center mt-8">
+    <form [formGroup]="editOrganisationFrom" (ngSubmit)="editOrganisation()">
+        <div class="field">
+            <label for="id" class="block">Id</label>
+            <input id="id" type="text" pInputText placeholder="Id" formControlName="id"
+                   class="w-full"/>
+            <small class="p-error block" *ngIf="editOrganisationFrom.get('id')?.invalid && editOrganisationFrom.get('id')?.dirty">
+                Id is required</small>
+        </div>
+
+        <div class="field">
+            <label for="name" class="block">Name</label>
+            <input id="name" type="text" pInputText placeholder="Name" formControlName="name"
+                   class="w-full"/>
+            <small class="p-error block" *ngIf="editOrganisationFrom.get('name')?.invalid && editOrganisationFrom.get('name')?.dirty">
+                Name is required</small>
+        </div>
+
+        <div class="field">
+            <label for="iban" class="block">IBAN</label>
+            <input id="iban" type="text" pInputText placeholder="IBAN" formControlName="iban"
+                   class="w-full"/>
+            <small class="p-error block" *ngIf="editOrganisationFrom.get('iban')?.invalid && editOrganisationFrom.get('iban')?.dirty">
+                IBAN is required</small>
+        </div>
+
+        <div class="field">
+            <label for="description" class="block">Description</label>
+            <input id="description" type="text" pInputText placeholder="Description" formControlName="description"
+                   class="w-full"/>
+            <small class="p-error block" *ngIf="editOrganisationFrom.get('description')?.invalid && editOrganisationFrom.get('description')?.dirty">
+                Description is required</small>
+        </div>
+
+        <button pButton type="submit" label="Add Organisation"></button>
+    </form>
+</p-card>

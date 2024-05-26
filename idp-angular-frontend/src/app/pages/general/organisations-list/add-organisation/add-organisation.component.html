@@ -1,0 +1,29 @@
+<p-card header="Register" styleClass="user-form" class="flex justify-content-center mt-8">
+    <form [formGroup]="addOrganisationFrom" (ngSubmit)="addOrganisation()" novalidate>
+        <div class="field">
+            <label for="name" class="block">Name</label>
+            <input id="name" type="text" pInputText placeholder="Name" formControlName="name"
+                   class="w-full"/>
+            <small class="p-error block" *ngIf="addOrganisationFrom.get('name')?.invalid && addOrganisationFrom.get('name')?.dirty">
+                Name is required</small>
+        </div>
+
+        <div class="field">
+            <label for="iban" class="block">IBAN</label>
+            <input id="iban" type="text" pInputText placeholder="IBAN" formControlName="iban"
+                   class="w-full"/>
+            <small class="p-error block" *ngIf="addOrganisationFrom.get('iban')?.invalid && addOrganisationFrom.get('iban')?.dirty">
+                IBAN is required</small>
+        </div>
+
+        <div class="field">
+            <label for="description" class="block">Description</label>
+            <input id="description" type="text" pInputText placeholder="Description" formControlName="description"
+                   class="w-full"/>
+            <small class="p-error block" *ngIf="addOrganisationFrom.get('description')?.invalid && addOrganisationFrom.get('description')?.dirty">
+                Description is required</small>
+        </div>
+
+        <button pButton type="submit" label="Add Organisation"></button>
+    </form>
+</p-card>

@@ -9,6 +9,10 @@ import {isNotAuthenticatedGuard} from "./services/extra/is-not-authenticated.gua
 import {
     OrganisationListComponent
 } from "./pages/general/organisations-list/orgainsation-list/organisation-list.component";
+import {AddOrganisationComponent} from "./pages/general/organisations-list/add-organisation/add-organisation.component";
+import {
+    EditOrganisationComponent
+} from "./pages/general/organisations-list/edit-organisation/edit-organisation.component";
 
 // const routes: Routes = [{ path: '', component: HomeComponent, pathMatch: 'full' },
 //   {onSameUrlNavigation: 'reload'}];
@@ -19,7 +23,9 @@ import {
             { path: 'login', component: LoginComponent, canActivate: [isNotAuthenticatedGuard] },
             { path: 'register', component: RegisterComponent, canActivate: [isNotAuthenticatedGuard]},
             { path: 'feedback', component: FeedbackComponent, canActivate: [isAuthenticatedGuard]},
-            { path: 'org-list', component: OrganisationListComponent, canActivate: [isAuthenticatedGuard]}
+            { path: 'org-list', component: OrganisationListComponent, canActivate: [isAuthenticatedGuard]},
+            { path: 'organisation/add', component: AddOrganisationComponent, canActivate: [isAuthenticatedGuard]},
+            { path: 'organisation/edit', component: EditOrganisationComponent, canActivate: [isAuthenticatedGuard]}
         ],
         {onSameUrlNavigation: 'reload'})],
     exports: [RouterModule]

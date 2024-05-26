@@ -1,14 +1,13 @@
-
-export class OrganisationResponse {
-    id: string;
+export class OrganisationEditRequest {
     name: string;
     iban: string;
     description: string;
+    id: string;
 
-    constructor(id: string, name: string, iban: string, description: string) {
-        this.id = id;
+    constructor(name: string, iban: string, description: string, id: string) {
         this.name = name;
         this.iban = iban;
         this.description = description;
+        this.id = id;
     }
 }

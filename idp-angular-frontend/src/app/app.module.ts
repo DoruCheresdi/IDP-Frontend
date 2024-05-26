@@ -28,6 +28,11 @@ import {CheckboxModule} from "primeng/checkbox";
 import {InputTextareaModule} from "primeng/inputtextarea";
 import { OrganisationListComponent } from './pages/general/organisations-list/orgainsation-list/organisation-list.component';
 import {TableModule} from "primeng/table";
+import { AddOrganisationComponent } from './pages/general/organisations-list/add-organisation/add-organisation.component';
+import { EditOrganisationComponent } from './pages/general/organisations-list/edit-organisation/edit-organisation.component';
+import {ConfirmDialogModule} from "primeng/confirmdialog";
+import {ToastModule} from "primeng/toast";
+import {ConfirmationService, MessageService} from "primeng/api";
 
 @NgModule({
     declarations: [
@@ -39,7 +44,9 @@ import {TableModule} from "primeng/table";
         RegisterComponent,
         FeedbackComponent,
         FeedbackDisplayComponent,
-        OrganisationListComponent
+        OrganisationListComponent,
+        AddOrganisationComponent,
+        EditOrganisationComponent
     ],
     imports: [
         BrowserModule,
@@ -58,10 +65,14 @@ import {TableModule} from "primeng/table";
         RadioButtonModule,
         CheckboxModule,
         InputTextareaModule,
-        TableModule
+        TableModule,
+        ConfirmDialogModule,
+        ToastModule
     ],
     providers: [
         AuthService,
+        ConfirmationService,
+        MessageService,
         provideAnimations(),
         {provide: HTTP_INTERCEPTORS, useClass: AuthBearerInterceptor, multi:true}
     ],
