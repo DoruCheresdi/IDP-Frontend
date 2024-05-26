@@ -6,6 +6,9 @@ import {RegisterComponent} from "./pages/general/register/register.component";
 import {FeedbackComponent} from "./pages/general/feedback/feedback.component";
 import {isAuthenticatedGuard} from "./services/extra/is-authenticated.guard";
 import {isNotAuthenticatedGuard} from "./services/extra/is-not-authenticated.guard";
+import {
+    OrganisationListComponent
+} from "./pages/general/organisations-list/orgainsation-list/organisation-list.component";
 
 // const routes: Routes = [{ path: '', component: HomeComponent, pathMatch: 'full' },
 //   {onSameUrlNavigation: 'reload'}];
@@ -15,7 +18,8 @@ import {isNotAuthenticatedGuard} from "./services/extra/is-not-authenticated.gua
             { path: '', component: HomeComponent, pathMatch: 'full' },
             { path: 'login', component: LoginComponent, canActivate: [isNotAuthenticatedGuard] },
             { path: 'register', component: RegisterComponent, canActivate: [isNotAuthenticatedGuard]},
-            { path: 'feedback', component: FeedbackComponent, canActivate: [isAuthenticatedGuard]}
+            { path: 'feedback', component: FeedbackComponent, canActivate: [isAuthenticatedGuard]},
+            { path: 'org-list', component: OrganisationListComponent, canActivate: [isAuthenticatedGuard]}
         ],
         {onSameUrlNavigation: 'reload'})],
     exports: [RouterModule]

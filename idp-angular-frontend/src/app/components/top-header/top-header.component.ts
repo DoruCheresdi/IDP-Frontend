@@ -20,6 +20,8 @@ export class TopHeaderComponent {
 
     private FEEDBACK_LABEL = 'Feedback';
 
+    private ORG_LIST_LABEL = 'Organisations';
+
     loginItem: MenuItem = {
         label: this.LOGIN_LABEL,
         icon: 'pi pi-fw pi-lock',
@@ -44,9 +46,16 @@ export class TopHeaderComponent {
         routerLink: '/feedback'
     }
 
+    orgListItem: MenuItem = {
+        label: this.ORG_LIST_LABEL,
+        icon: 'pi pi-fw pi-list',
+        routerLink: '/org-list'
+    }
+
     loggedInItems: MenuItem[] = [
         this.logoutItem,
-        this.feedbackItem
+        this.feedbackItem,
+        this.orgListItem
     ];
 
     loogedOutItems: MenuItem[] = [

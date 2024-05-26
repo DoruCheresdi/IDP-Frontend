@@ -26,6 +26,8 @@ import {DropdownModule} from "primeng/dropdown";
 import {RadioButtonModule} from "primeng/radiobutton";
 import {CheckboxModule} from "primeng/checkbox";
 import {InputTextareaModule} from "primeng/inputtextarea";
+import { OrganisationListComponent } from './pages/general/organisations-list/orgainsation-list/organisation-list.component';
+import {TableModule} from "primeng/table";
 
 @NgModule({
     declarations: [
@@ -36,7 +38,8 @@ import {InputTextareaModule} from "primeng/inputtextarea";
         TopHeaderComponent,
         RegisterComponent,
         FeedbackComponent,
-        FeedbackDisplayComponent
+        FeedbackDisplayComponent,
+        OrganisationListComponent
     ],
     imports: [
         BrowserModule,
@@ -54,7 +57,8 @@ import {InputTextareaModule} from "primeng/inputtextarea";
         DropdownModule,
         RadioButtonModule,
         CheckboxModule,
-        InputTextareaModule
+        InputTextareaModule,
+        TableModule
     ],
     providers: [
         AuthService,
