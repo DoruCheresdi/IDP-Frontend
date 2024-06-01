@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {UrlService} from "./url.service";
 import {Observable} from "rxjs";
 import {RegisterRequest} from "../dtos/register-request";
-import {Token} from "../model/token";
+import {TokenResponse} from "../model/token-response";
 import {FeedbackCreateReq} from "../dtos/feedback-create-req";
 import {Feedback} from "../model/feedback";
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {UrlService} from "./url.service";
 import {Observable} from "rxjs";
-import {Token} from "../model/token";
+import {TokenResponse} from "../model/token-response";
 import {HttpClient} from "@angular/common/http";
 import {RegisterRequest} from "../dtos/register-request";
 

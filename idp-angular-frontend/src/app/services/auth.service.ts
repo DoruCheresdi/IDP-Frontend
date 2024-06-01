@@ -4,10 +4,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {catchError, Observable, throwError} from "rxjs";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import {UrlService} from "./url.service";
-import {Token} from "../model/token";
+import {TokenResponse} from "../model/token-response";
 import {AuthenticationRequest} from "../dtos/authentication-request";
 import {Router} from "@angular/router";
 import {EventService} from "./event.service";
+import {TokenPayload} from "../model/token-payload";
 
 export class Foo {
     constructor(
@@ -27,7 +28,7 @@ export class AuthService {
     authenticate(email: string, password: string): void {
         const authenticationRequest = new AuthenticationRequest(email, password);
 
-        this.http.post<Token>(this.urlService.getUrl(this.authenticationPath), authenticationRequest)
+        this.http.post<TokenResponse>(this.urlService.getUrl(this.authenticationPath), authenticationRequest)
             .subscribe({
                     next: data => this.successfulAuth(data),
                     error: _ => alert('Invalid Credentials')
@@ -35,13 +36,13 @@ export class AuthService {
             );
     }
 
-    successfulAuth(token: Token){
+    successfulAuth(token: TokenResponse){
         this.saveToken(token);
         this.eventService.loginEvent.emit();
         this.router.navigateByUrl('/');
     }
 
-    saveToken(token: Token){
+    saveToken(token: TokenResponse){
         Cookie.set("access_token", token.access_token);
         // window.location.href = this.urlService.frontendUrl;
     }
@@ -74,4 +75,10 @@ export class AuthService {
     //     this.organization = payload.organization;
     //     return this.organization;
     // }
+
+    isAdmin(): boolean {
+        var token = Cookie.get("access_token");
+        var payload = this.jwtHelper.decodeToken(token) as TokenPayload;
+        return payload.Role === 'ADMIN';
+    }
 }

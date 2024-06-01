@@ -1,4 +1,4 @@
-export class Token {
+export class TokenResponse {
 
     public access_token: string;
     public refresh_token: string;

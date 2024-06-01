@@ -24,6 +24,8 @@ export class TopHeaderComponent {
 
     private REVIEW_LIST_LABEL = 'Reviews';
 
+    private HOME_LABEL = '';
+
     loginItem: MenuItem = {
         label: this.LOGIN_LABEL,
         icon: 'pi pi-fw pi-lock',
@@ -60,11 +62,21 @@ export class TopHeaderComponent {
         routerLink: '/review-list'
     }
 
-    loggedInItems: MenuItem[] = [
-        this.logoutItem,
-        this.feedbackItem,
+    homeItem: MenuItem = {
+        label: this.HOME_LABEL,
+        icon: 'pi pi-fw pi-home',
+        routerLink: '/'
+    }
+
+    adminItems: MenuItem[] = [
         this.orgListItem,
         this.reviewListItem
+    ];
+
+    loggedInItems: MenuItem[] = [
+        this.homeItem,
+        this.logoutItem,
+        this.feedbackItem
     ];
 
     loogedOutItems: MenuItem[] = [
@@ -97,5 +109,8 @@ export class TopHeaderComponent {
 
     addLogoutItemIfNotPresent() {
         this.items = this.loggedInItems;
+        if (this.authService.isAdmin()) {
+            this.items = this.items.concat(this.adminItems);
+        }
     }
 }
