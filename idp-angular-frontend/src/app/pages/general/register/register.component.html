@@ -44,6 +44,26 @@
             </p-password>
         </div>
 
+        <div class="field w-full" >
+            <label for="passwordd2" class="block">Password</label>
+            <p-password id="passwordd2" formControlName="password2"
+                        [style]="{'width':'100%'}"
+                        [inputStyle]="{'width':'100%'}"
+                        [toggleMask]="true"
+                        [strongRegex]="'^(?=.{3,})'">
+                <ng-template pTemplate="header">
+                    <h6>Pick a password</h6>
+                </ng-template>
+                <ng-template pTemplate="footer">
+                    <p-divider></p-divider>
+                    <p class="p-mt-2">Suggestions</p>
+                    <ul class="p-pl-2 p-ml-2 p-mt-0" style="line-height: 1.5">
+                        <li>Minimum 3 characters</li>
+                    </ul>
+                </ng-template>
+            </p-password>
+        </div>
+
         <button pButton type="submit" label="Register"></button>
     </form>
 </p-card>

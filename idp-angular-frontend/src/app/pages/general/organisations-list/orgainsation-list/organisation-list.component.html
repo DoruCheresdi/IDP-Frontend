@@ -23,10 +23,11 @@
     </ng-template>
     <ng-template pTemplate="header">
         <tr>
-            <th style="width:25%">Id</th>
-            <th style="width:25%">Name</th>
-            <th style="width:25%">IBAN</th>
-            <th style="width:25%">Description</th>
+            <th style="width:20%">Id</th>
+            <th style="width:20%">Name</th>
+            <th style="width:20%">IBAN</th>
+            <th style="width:20%">Description</th>
+            <th style="width:20%">Approval Status</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-organisation>
@@ -35,6 +36,9 @@
             <td>{{ organisation.name }}</td>
             <td>{{ organisation.iban }}</td>
             <td>{{ organisation.description }}</td>
+            <td>
+                <p-chip [label]="getApprovedLabel(organisation)" [class]="organisation.isApproved ? 'p-chip-success' : 'p-chip-danger'"></p-chip>
+            </td>
         </tr>
     </ng-template>
     <ng-template pTemplate="paginatorleft">
@@ -51,6 +55,11 @@
                       severity="danger"
             (onClick)="showDeleteConfirmation()">
                 Delete
+            </p-button>
+            <p-button type="button" class="ml-2"
+                      [disabled]="selectedOrganisation?.isApproved !== false"
+                      (onClick)="approveOrganisation(selectedOrganisation)">
+                Approve Organisation
             </p-button>
         </div>
     </ng-template>

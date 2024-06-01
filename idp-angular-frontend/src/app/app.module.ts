@@ -36,6 +36,7 @@ import {ConfirmationService, MessageService} from "primeng/api";
 import { ReviewListComponent } from './pages/general/review/review-list/review-list.component';
 import { AddReviewComponent } from './pages/general/review/add-review/add-review.component';
 import { EditReviewComponent } from './pages/general/review/edit-review/edit-review.component';
+import {ChipModule} from "primeng/chip";
 
 @NgModule({
     declarations: [
@@ -73,7 +74,8 @@ import { EditReviewComponent } from './pages/general/review/edit-review/edit-rev
         InputTextareaModule,
         TableModule,
         ConfirmDialogModule,
-        ToastModule
+        ToastModule,
+        ChipModule
     ],
     providers: [
         AuthService,

@@ -6,6 +6,7 @@ import {OrganisationResponse} from "../dtos/organisation-response";
 import {PageResponse} from "../dtos/page-response";
 import {OrganisationAddRequest} from "../dtos/organisation-add-request";
 import {OrganisationEditRequest} from "../dtos/organisation-edit-request";
+import {OrganisationApprovalDto} from "../dtos/organisation-approval-dto";
 
 @Injectable({
     providedIn: 'root'
@@ -21,6 +22,8 @@ export class OrganisationService {
     public editOrganisationPath = 'organisation';
 
     public deleteOrganisationPath = 'organisation';
+
+    public approveOrganisationPath = 'organisation/approve';
 
     constructor(private http: HttpClient,
                 private urlService: UrlService) { }
@@ -48,5 +51,9 @@ export class OrganisationService {
 
     deleteOrganisation(id: string): Observable<any> {
         return this.http.delete<any>(this.urlService.getUrl(this.deleteOrganisationPath) + '/' + id);
+    }
+
+    approveOrganisation(dto: OrganisationApprovalDto): Observable<any> {
+        return this.http.post<any>(this.urlService.getUrl(this.approveOrganisationPath), dto);
     }
 }

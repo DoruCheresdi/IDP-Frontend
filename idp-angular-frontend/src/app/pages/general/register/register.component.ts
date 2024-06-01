@@ -15,6 +15,7 @@ export class RegisterComponent {
     userForm = this.fb.group({
         email: ['', Validators.required],
         password: ['', Validators.required],
+        password2: ['', Validators.required],
         firstName: ['', Validators.required],
         lastName: ['', Validators.required]
     });
@@ -29,6 +30,12 @@ export class RegisterComponent {
             console.log(this.userForm.errors)
             return;
         }
+
+        if (this.userForm.controls['password'].value !== this.userForm.controls['password2'].value) {
+            alert('Passwords do not match');
+            return;
+        }
+
         const email = this.userForm.controls['email'].value as string;
         const password = this.userForm.controls['password'].value as string;
         const firstName = this.userForm.controls['firstName'].value as string;
