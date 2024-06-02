@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooComponent } from "./foo.component";
-import { HomeComponent } from "./home.component";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { AuthService } from "./services/auth.service";
 import { LoginComponent } from './pages/general/login/login.component';
@@ -37,11 +36,14 @@ import { ReviewListComponent } from './pages/general/review/review-list/review-l
 import { AddReviewComponent } from './pages/general/review/add-review/add-review.component';
 import { EditReviewComponent } from './pages/general/review/edit-review/edit-review.component';
 import {ChipModule} from "primeng/chip";
+import { HomePageComponent } from './pages/home/home-page/home-page.component';
+import { OrganisationDataViewComponent } from './components/organisation-data-view/organisation-data-view.component';
+import {DataViewModule} from "primeng/dataview";
+import {RatingModule} from "primeng/rating";
 
 @NgModule({
     declarations: [
         AppComponent,
-        HomeComponent,
         FooComponent,
         LoginComponent,
         TopHeaderComponent,
@@ -53,7 +55,9 @@ import {ChipModule} from "primeng/chip";
         EditOrganisationComponent,
         ReviewListComponent,
         AddReviewComponent,
-        EditReviewComponent
+        EditReviewComponent,
+        HomePageComponent,
+        OrganisationDataViewComponent
     ],
     imports: [
         BrowserModule,
@@ -75,7 +79,9 @@ import {ChipModule} from "primeng/chip";
         TableModule,
         ConfirmDialogModule,
         ToastModule,
-        ChipModule
+        ChipModule,
+        DataViewModule,
+        RatingModule
     ],
     providers: [
         AuthService,

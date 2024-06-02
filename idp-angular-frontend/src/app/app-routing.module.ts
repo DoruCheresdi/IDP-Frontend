@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import {HomeComponent} from "./home.component";
+import { RouterModule } from '@angular/router';
 import {LoginComponent} from "./pages/general/login/login.component";
 import {RegisterComponent} from "./pages/general/register/register.component";
 import {FeedbackComponent} from "./pages/general/feedback/feedback.component";
@@ -16,13 +15,14 @@ import {
 import {EditReviewComponent} from "./pages/general/review/edit-review/edit-review.component";
 import {ReviewListComponent} from "./pages/general/review/review-list/review-list.component";
 import {AddReviewComponent} from "./pages/general/review/add-review/add-review.component";
+import {HomePageComponent} from "./pages/home/home-page/home-page.component";
 
 // const routes: Routes = [{ path: '', component: HomeComponent, pathMatch: 'full' },
 //   {onSameUrlNavigation: 'reload'}];
 
 @NgModule({
     imports: [RouterModule.forRoot([
-            { path: '', component: HomeComponent, pathMatch: 'full' },
+            { path: '', component: HomePageComponent, pathMatch: 'full' },
             { path: 'login', component: LoginComponent, canActivate: [isNotAuthenticatedGuard] },
             { path: 'register', component: RegisterComponent, canActivate: [isNotAuthenticatedGuard]},
             { path: 'feedback', component: FeedbackComponent, canActivate: [isAuthenticatedGuard]},
