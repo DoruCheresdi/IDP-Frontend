@@ -10,7 +10,7 @@
 
         <div class="field">
             <label for="orgLink" class="block">Link to your organisation's webpage</label>
-            <input id="orgLink" type="text" pInputText placeholder="Organisation link" formControlName="orgLink"
+            <input id="orgLink" type="text" pInputText placeholder="Organisation link must start with https://" formControlName="orgLink"
                    class="w-full"/>
             <small class="p-error block" *ngIf="addOrganisationFrom.get('orgLink')?.invalid && addOrganisationFrom.get('orgLink')?.dirty">
                 Organisation Link is required</small>

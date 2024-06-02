@@ -8,6 +8,10 @@
             <div class="flex justify-content-center">
                 <p-rating [(ngModel)]="organisation.averageRating" [readonly]="true" [cancel]="false"></p-rating>
             </div>
+            <p-button *ngIf="isOwner" class="m-2 block" (onClick)="goToEditOrganisation()">
+                Edit Organisation Info
+                <i class="pi pi-arrow-right ml-2"></i>
+            </p-button>
             <p *ngIf="organisation.orgLink">
                 Link to website: <a [href]="organisation.orgLink">{{organisation.orgLink}}</a>
             </p>
@@ -20,6 +24,8 @@
             <p *ngIf="organisation.iban">
                 Bank Account IBAN: {{organisation.iban}}
             </p>
+            <app-reviews-for-organisation *ngIf="organisation.id" [organisation]="organisation">
+            </app-reviews-for-organisation>
         </div>
     </div>
 </div>

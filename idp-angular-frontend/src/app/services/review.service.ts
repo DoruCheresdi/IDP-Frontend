@@ -11,7 +11,9 @@ import {ReviewEditRequest} from "../dtos/review-edit-request";
 })
 export class ReviewService {
 
-    public addReviewAllPath = 'review/all';
+    public getReviewAllPath = 'review/all';
+
+    public getReviewsForOrgPath = 'review/by-organisation';
 
     public addReviewPath = 'review';
 
@@ -23,7 +25,11 @@ export class ReviewService {
                 private urlService: UrlService) { }
 
     getReviewsAll(): Observable<ReviewResponse[]> {
-        return this.http.get<ReviewResponse[]>(this.urlService.getUrl(this.addReviewAllPath));
+        return this.http.get<ReviewResponse[]>(this.urlService.getUrl(this.getReviewAllPath));
+    }
+
+    getReviewsForOrganisation(id: string): Observable<ReviewResponse[]> {
+        return this.http.get<ReviewResponse[]>(this.urlService.getUrl(this.getReviewsForOrgPath) + '/' + id);
     }
 
     addReview(review: ReviewAddRequest): Observable<ReviewResponse> {

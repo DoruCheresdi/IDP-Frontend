@@ -43,6 +43,7 @@ import {RatingModule} from "primeng/rating";
 import { FavoriteOrganisationsComponent } from './pages/home/favorite-organisations/favorite-organisations.component';
 import { FeaturedOrganisationsComponent } from './pages/home/featured-organisations/featured-organisations.component';
 import { OrganisationComponent } from './pages/home/organisation/organisation.component';
+import { ReviewsForOrganisationComponent } from './pages/home/reviews-for-organisation/reviews-for-organisation.component';
 
 @NgModule({
     declarations: [
@@ -63,7 +64,8 @@ import { OrganisationComponent } from './pages/home/organisation/organisation.co
         OrganisationDataViewComponent,
         FavoriteOrganisationsComponent,
         FeaturedOrganisationsComponent,
-        OrganisationComponent
+        OrganisationComponent,
+        ReviewsForOrganisationComponent
     ],
     imports: [
         BrowserModule,

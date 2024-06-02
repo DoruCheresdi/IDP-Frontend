@@ -34,7 +34,7 @@ export class AddOrganisationComponent {
 
         const orgRequest = new OrganisationAddRequest(name, orgLink, description);
         this.organisationService.addOrganisation(orgRequest).subscribe({
-                next: data => this.router.navigateByUrl('/org-list'),
+                next: data => this.router.navigateByUrl('/'),
                 error: _ => alert('Invalid Request')
             }
         );

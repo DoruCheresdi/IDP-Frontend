@@ -34,7 +34,7 @@ import {OrganisationComponent} from "./pages/home/organisation/organisation.comp
             { path: 'organisation/add', component: AddOrganisationComponent, canActivate: [isAuthenticatedGuard]},
             { path: 'organisation/edit', component: EditOrganisationComponent, canActivate: [isAuthenticatedGuard]},
             { path: 'review-list', component: ReviewListComponent, canActivate: [isAdminGuard]},
-            { path: 'add-review', component: AddReviewComponent, canActivate: [isAuthenticatedGuard]},
+            { path: 'add-review/:id', component: AddReviewComponent, canActivate: [isAuthenticatedGuard]},
             { path: 'review/edit', component: EditReviewComponent, canActivate: [isAuthenticatedGuard]},
             { path: 'organisations/favorite', component: FavoriteOrganisationsComponent, canActivate: [isAuthenticatedGuard]},
             { path: 'organisations/featured', component: FeaturedOrganisationsComponent, canActivate: [isAuthenticatedGuard]},

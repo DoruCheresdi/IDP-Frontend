@@ -81,4 +81,17 @@ export class AuthService {
         var payload = this.jwtHelper.decodeToken(token) as TokenPayload;
         return payload.Role === 'ADMIN';
     }
+
+    isOrganisationOwner(organisationId: number): boolean {
+        // this doesn't work if the organisation was created after the user logged in:
+        var token = Cookie.get("access_token");
+        var payload = this.jwtHelper.decodeToken(token) as TokenPayload;
+        return payload.OwnedOrganisations.includes(organisationId);
+    }
+
+    getOwnerEmail(): string {
+        var token = Cookie.get("access_token");
+        var payload = this.jwtHelper.decodeToken(token) as TokenPayload;
+        return payload.sub;
+    }
 }

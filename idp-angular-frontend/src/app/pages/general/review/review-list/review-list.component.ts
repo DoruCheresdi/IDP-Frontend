@@ -45,9 +45,9 @@ export class ReviewListComponent implements OnInit {
         this.router.navigateByUrl('/review/edit', {state: {data: this.selectedReview}});
     }
 
-    addNewRow() {
-        this.router.navigateByUrl('/add-review');
-    }
+    // addNewRow() {
+    //     this.router.navigateByUrl('/add-review');
+    // }
 
     clear(table: Table) {
         table.clear();

@@ -32,6 +32,7 @@ export class EditOrganisationComponent implements OnInit {
     }
 
     mapOrganisationFromRouteData() {
+        // this works only in constructor:
         const lastRouteData = this.router.getCurrentNavigation()?.extras.state as any;
         const orgToEdit = lastRouteData?.data as OrganisationResponse;
         if (orgToEdit) {
