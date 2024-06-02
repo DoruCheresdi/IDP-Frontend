@@ -1,3 +1,16 @@
-<div>
-
+<div class="flex justify-content-center">
+    <div class="block w-8 bg-white mt-5">
+        <div class="m-4">
+            <img class="w-9 w-22rem shadow-2 block xl:block mx-auto border-round mt-5"
+                 [src]="'https://primefaces.org/cdn/primeng/images/demo/product/bamboo-watch.jpg'"
+                 [alt]="organisation.name" />
+            <h1 class="text-center">{{organisation.name}}</h1>
+            <div class="flex justify-content-center">
+                <p-rating [(ngModel)]="organisation.averageRating" [readonly]="true" [cancel]="false"></p-rating>
+            </div>
+            <p>
+                {{organisation.description}}
+            </p>
+        </div>
+    </div>
 </div>

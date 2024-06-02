@@ -150,4 +150,8 @@ export class OrganisationListComponent implements OnInit {
             }
         });
     }
+
+    navigateToOrganisation(organisation: OrganisationResponse): void {
+        this.router.navigate(['/organisation', organisation.id]);
+    }
 }

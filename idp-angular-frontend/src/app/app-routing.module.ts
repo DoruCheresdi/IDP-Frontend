@@ -26,7 +26,7 @@ import {OrganisationComponent} from "./pages/home/organisation/organisation.comp
 
 @NgModule({
     imports: [RouterModule.forRoot([
-            { path: '', component: HomePageComponent, pathMatch: 'full' },
+            { path: '', component: HomePageComponent, canActivate: [isAuthenticatedGuard] },
             { path: 'login', component: LoginComponent, canActivate: [isNotAuthenticatedGuard] },
             { path: 'register', component: RegisterComponent, canActivate: [isNotAuthenticatedGuard]},
             { path: 'feedback', component: FeedbackComponent, canActivate: [isAuthenticatedGuard]},
