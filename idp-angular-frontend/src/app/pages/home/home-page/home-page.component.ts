@@ -42,4 +42,8 @@ export class HomePageComponent implements OnInit {
     goToFavoriteOrgs(): void {
         this.router.navigateByUrl('/organisations/favorite');
     }
+
+    goToCreateOrg(): void {
+        this.router.navigateByUrl('/organisation/add');
+    }
 }

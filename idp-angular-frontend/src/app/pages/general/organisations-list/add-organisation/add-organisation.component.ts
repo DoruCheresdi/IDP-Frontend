@@ -15,7 +15,7 @@ export class AddOrganisationComponent {
     addOrganisationFrom = this.fb.group({
         name: ['', Validators.required],
         description: ['', Validators.required],
-        iban: ['', Validators.required]
+        orgLink: ['', Validators.required]
     });
 
     constructor(private organisationService: OrganisationService,
@@ -30,9 +30,9 @@ export class AddOrganisationComponent {
         }
         const name = this.addOrganisationFrom.controls['name'].value as string;
         const description = this.addOrganisationFrom.controls['description'].value as string;
-        const iban = this.addOrganisationFrom.controls['iban'].value as string;
+        const orgLink = this.addOrganisationFrom.controls['orgLink'].value as string;
 
-        const orgRequest = new OrganisationAddRequest(name, description, iban);
+        const orgRequest = new OrganisationAddRequest(name, orgLink, description);
         this.organisationService.addOrganisation(orgRequest).subscribe({
                 next: data => this.router.navigateByUrl('/org-list'),
                 error: _ => alert('Invalid Request')

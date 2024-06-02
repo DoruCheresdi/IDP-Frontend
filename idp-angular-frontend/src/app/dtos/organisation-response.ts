@@ -9,9 +9,10 @@ export class OrganisationResponse {
     averageRating: number;
     ownerId: string;
     ownerEmail: string;
+    orgLink: string;
 
     constructor(id: string, name: string, iban: string, description: string, isApproved: boolean, averageRating: number,
-                isFeatured: boolean, ownerId: string, ownerEmail: string) {
+                isFeatured: boolean, ownerId: string, ownerEmail: string, orgLink: string) {
         this.id = id;
         this.name = name;
         this.iban = iban;
@@ -21,5 +22,6 @@ export class OrganisationResponse {
         this.isFeatured = isFeatured;
         this.ownerId = ownerId;
         this.ownerEmail = ownerEmail;
+        this.orgLink = orgLink;
     }
 }

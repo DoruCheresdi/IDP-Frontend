@@ -9,17 +9,17 @@
         </div>
 
         <div class="field">
-            <label for="iban" class="block">IBAN</label>
-            <input id="iban" type="text" pInputText placeholder="IBAN" formControlName="iban"
+            <label for="orgLink" class="block">Link to your organisation's webpage</label>
+            <input id="orgLink" type="text" pInputText placeholder="Organisation link" formControlName="orgLink"
                    class="w-full"/>
-            <small class="p-error block" *ngIf="addOrganisationFrom.get('iban')?.invalid && addOrganisationFrom.get('iban')?.dirty">
-                IBAN is required</small>
+            <small class="p-error block" *ngIf="addOrganisationFrom.get('orgLink')?.invalid && addOrganisationFrom.get('orgLink')?.dirty">
+                Organisation Link is required</small>
         </div>
 
         <div class="field">
             <label for="description" class="block">Description</label>
-            <input id="description" type="text" pInputText placeholder="Description" formControlName="description"
-                   class="w-full"/>
+            <textarea id="description" type="text" pInputTextarea placeholder="Description" formControlName="description"
+                   class="w-full" rows="5" cols="50"></textarea>
             <small class="p-error block" *ngIf="addOrganisationFrom.get('description')?.invalid && addOrganisationFrom.get('description')?.dirty">
                 Description is required</small>
         </div>

@@ -1,10 +1,10 @@
 export class OrganisationAddRequest {
     name: string;
-    iban: string;
+    orgLink: string;
     description: string;
-    constructor(name: string, iban: string, description: string) {
+    constructor(name: string, orgLink: string, description: string) {
         this.name = name;
-        this.iban = iban;
+        this.orgLink = orgLink
         this.description = description;
     }
 }
