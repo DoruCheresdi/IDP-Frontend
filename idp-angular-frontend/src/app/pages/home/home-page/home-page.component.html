@@ -5,11 +5,11 @@
                                         [organisations]="organisations">
             </app-organisation-data-view>
             <div>
-                <p-button class="m-2 block" severity="warning">
+                <p-button class="m-2 block" severity="warning" (onClick)="goToFavoriteOrgs()">
                     Check your favorite organisations
                     <i class="pi pi-star ml-2"></i>
                 </p-button>
-                <p-button class="m-2 block">
+                <p-button class="m-2 block" (onClick)="goToFeaturedOrgs()">
                     Check out our featured organisations
                     <i class="pi pi-arrow-right ml-2"></i>
                 </p-button>

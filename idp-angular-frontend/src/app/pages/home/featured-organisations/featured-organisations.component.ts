@@ -1,15 +1,15 @@
 import {Component, OnInit} from '@angular/core';
-import {OrganisationResponse} from "../../../dtos/organisation-response";
 import {OrganisationService} from "../../../services/organisation.service";
 import {Router} from "@angular/router";
 import {ConfirmationService, MessageService} from "primeng/api";
+import {OrganisationResponse} from "../../../dtos/organisation-response";
 
 @Component({
-  selector: 'app-home-page',
-  templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.css']
+  selector: 'app-featured-organisations',
+  templateUrl: './featured-organisations.component.html',
+  styleUrls: ['./featured-organisations.component.css']
 })
-export class HomePageComponent implements OnInit {
+export class FeaturedOrganisationsComponent implements OnInit {
 
     organisations: OrganisationResponse[] = [];
 
@@ -24,7 +24,7 @@ export class HomePageComponent implements OnInit {
     }
 
     fetchOrganisations(): void {
-        this.organisationService.getOrganisationsAll().subscribe({
+        this.organisationService.getAllOrganisationsFeatured().subscribe({
                 next: (response: OrganisationResponse[]) => {
                     this.organisations = response;
                 },
@@ -35,11 +35,4 @@ export class HomePageComponent implements OnInit {
         );
     }
 
-    goToFeaturedOrgs(): void {
-        this.router.navigateByUrl('/organisations/featured');
-    }
-
-    goToFavoriteOrgs(): void {
-        this.router.navigateByUrl('/organisations/favorite');
-    }
 }

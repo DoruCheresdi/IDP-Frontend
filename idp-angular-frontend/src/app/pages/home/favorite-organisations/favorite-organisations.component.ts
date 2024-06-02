@@ -5,11 +5,11 @@ import {Router} from "@angular/router";
 import {ConfirmationService, MessageService} from "primeng/api";
 
 @Component({
-  selector: 'app-home-page',
-  templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.css']
+  selector: 'app-favorite-organisations',
+  templateUrl: './favorite-organisations.component.html',
+  styleUrls: ['./favorite-organisations.component.css']
 })
-export class HomePageComponent implements OnInit {
+export class FavoriteOrganisationsComponent implements OnInit {
 
     organisations: OrganisationResponse[] = [];
 
@@ -33,13 +33,5 @@ export class HomePageComponent implements OnInit {
                 }
             }
         );
-    }
-
-    goToFeaturedOrgs(): void {
-        this.router.navigateByUrl('/organisations/featured');
-    }
-
-    goToFavoriteOrgs(): void {
-        this.router.navigateByUrl('/organisations/favorite');
     }
 }

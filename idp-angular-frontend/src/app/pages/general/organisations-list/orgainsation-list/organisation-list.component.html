@@ -23,11 +23,12 @@
     </ng-template>
     <ng-template pTemplate="header">
         <tr>
-            <th style="width:20%">Id</th>
-            <th style="width:20%">Name</th>
-            <th style="width:20%">IBAN</th>
-            <th style="width:20%">Description</th>
-            <th style="width:20%">Approval Status</th>
+            <th style="width:18%">Id</th>
+            <th style="width:18%">Name</th>
+            <th style="width:18%">IBAN</th>
+            <th style="width:18%">Description</th>
+            <th style="width:18%">Approval Status</th>
+            <th style="width:18%">Feature Status</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-organisation>
@@ -38,6 +39,9 @@
             <td>{{ organisation.description }}</td>
             <td>
                 <p-chip [label]="getApprovedLabel(organisation)" [class]="organisation.isApproved ? 'p-chip-success' : 'p-chip-danger'"></p-chip>
+            </td>
+            <td>
+                <p-chip [label]="getFeaturedLabel(organisation)" [class]="organisation.isFeatured ? 'p-chip-success' : 'p-chip-danger'"></p-chip>
             </td>
         </tr>
     </ng-template>
@@ -60,6 +64,11 @@
                       [disabled]="selectedOrganisation?.isApproved !== false"
                       (onClick)="approveOrganisation(selectedOrganisation)">
                 Approve Organisation
+            </p-button>
+            <p-button type="button" class="ml-2"
+                      [disabled]="selectedOrganisation?.isFeatured !== false"
+                      (onClick)="featureOrganisation(selectedOrganisation)">
+                Change Feature Status
             </p-button>
         </div>
     </ng-template>

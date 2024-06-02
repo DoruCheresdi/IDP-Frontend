@@ -16,6 +16,9 @@ import {EditReviewComponent} from "./pages/general/review/edit-review/edit-revie
 import {ReviewListComponent} from "./pages/general/review/review-list/review-list.component";
 import {AddReviewComponent} from "./pages/general/review/add-review/add-review.component";
 import {HomePageComponent} from "./pages/home/home-page/home-page.component";
+import {FavoriteOrganisationsComponent} from "./pages/home/favorite-organisations/favorite-organisations.component";
+import {FeaturedOrganisationsComponent} from "./pages/home/featured-organisations/featured-organisations.component";
+import {isAdminGuard} from "./services/extra/is-admin.guard";
 
 // const routes: Routes = [{ path: '', component: HomeComponent, pathMatch: 'full' },
 //   {onSameUrlNavigation: 'reload'}];
@@ -26,12 +29,14 @@ import {HomePageComponent} from "./pages/home/home-page/home-page.component";
             { path: 'login', component: LoginComponent, canActivate: [isNotAuthenticatedGuard] },
             { path: 'register', component: RegisterComponent, canActivate: [isNotAuthenticatedGuard]},
             { path: 'feedback', component: FeedbackComponent, canActivate: [isAuthenticatedGuard]},
-            { path: 'org-list', component: OrganisationListComponent, canActivate: [isAuthenticatedGuard]},
+            { path: 'org-list', component: OrganisationListComponent, canActivate: [isAdminGuard]},
             { path: 'organisation/add', component: AddOrganisationComponent, canActivate: [isAuthenticatedGuard]},
             { path: 'organisation/edit', component: EditOrganisationComponent, canActivate: [isAuthenticatedGuard]},
-            { path: 'review-list', component: ReviewListComponent, canActivate: [isAuthenticatedGuard]},
+            { path: 'review-list', component: ReviewListComponent, canActivate: [isAdminGuard]},
             { path: 'add-review', component: AddReviewComponent, canActivate: [isAuthenticatedGuard]},
-            { path: 'review/edit', component: EditReviewComponent, canActivate: [isAuthenticatedGuard]}
+            { path: 'review/edit', component: EditReviewComponent, canActivate: [isAuthenticatedGuard]},
+            { path: 'organisations/favorite', component: FavoriteOrganisationsComponent, canActivate: [isAuthenticatedGuard]},
+            { path: 'organisations/featured', component: FeaturedOrganisationsComponent, canActivate: [isAuthenticatedGuard]}
         ],
         {onSameUrlNavigation: 'reload'})],
     exports: [RouterModule]

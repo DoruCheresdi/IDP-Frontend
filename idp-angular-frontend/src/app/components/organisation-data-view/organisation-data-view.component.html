@@ -1,4 +1,4 @@
-<p-card header="Discover Organisations">
+<p-card [header]="header">
     <p-dataView #dv [value]="organisations" [rows]="5" [paginator]="true">
         <ng-template let-organisation pTemplate="listItem">
             <div class="col-12">

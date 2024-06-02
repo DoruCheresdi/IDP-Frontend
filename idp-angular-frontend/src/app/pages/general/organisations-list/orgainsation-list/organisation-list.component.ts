@@ -7,6 +7,8 @@ import {Router} from "@angular/router";
 import {ConfirmationService, ConfirmEventType, MessageService} from "primeng/api";
 import {OrganisationApprovalDto} from "../../../../dtos/organisation-approval-dto";
 import {HttpErrorResponse} from "@angular/common/http";
+import {isNullOrUndefined} from "../../../../util/utils";
+import {OrganisationFeatureDto} from "../../../../dtos/organisation-feature-dto";
 
 @Component({
     selector: 'app-organisation-list',
@@ -118,9 +120,34 @@ export class OrganisationListComponent implements OnInit {
     }
 
     getApprovedLabel(organisation: OrganisationResponse): string {
-        if (organisation.isApproved === null) {
+        if (isNullOrUndefined(organisation.isApproved)) {
             return 'Null';
         }
         return organisation.isApproved ? 'Approved' : 'Not Approved';
+    }
+
+    getFeaturedLabel(organisation: OrganisationResponse): string {
+        if (isNullOrUndefined(organisation.isFeatured)) {
+            return 'Null';
+        }
+        return organisation.isFeatured ? 'Featured' : 'Not Featured';
+    }
+
+    featureOrganisation(org: OrganisationResponse | undefined) {
+        if (!org) {
+            this.messageService.add({severity: 'error', summary: 'Error', detail: 'No organisation selected'});
+            return;
+        }
+        const dto = new OrganisationFeatureDto(org.id, true);
+        this.organisationService.featureOrganisation(dto).subscribe({
+            next: (_: any) => {
+                this.messageService.add({severity: 'success', summary: 'Success', detail: 'Organisation featured successfully'});
+                this.fetchOrganisationsAll();
+            },
+            error: (error: any) => {
+                this.messageService.add({severity: 'error', summary: 'Error',
+                    detail: 'Organisation feature failed ' + (error.status === 403 ? 'user is not an admin' : error.status)});
+            }
+        });
     }
 }

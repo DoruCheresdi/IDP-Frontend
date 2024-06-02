@@ -10,6 +10,8 @@ export class OrganisationDataViewComponent {
 
     @Input() organisations: OrganisationResponse[] = [];
 
+    @Input() header = 'Discover Organisations';
+
     constructor() {
     }
 }

@@ -40,6 +40,8 @@ import { HomePageComponent } from './pages/home/home-page/home-page.component';
 import { OrganisationDataViewComponent } from './components/organisation-data-view/organisation-data-view.component';
 import {DataViewModule} from "primeng/dataview";
 import {RatingModule} from "primeng/rating";
+import { FavoriteOrganisationsComponent } from './pages/home/favorite-organisations/favorite-organisations.component';
+import { FeaturedOrganisationsComponent } from './pages/home/featured-organisations/featured-organisations.component';
 
 @NgModule({
     declarations: [
@@ -57,7 +59,9 @@ import {RatingModule} from "primeng/rating";
         AddReviewComponent,
         EditReviewComponent,
         HomePageComponent,
-        OrganisationDataViewComponent
+        OrganisationDataViewComponent,
+        FavoriteOrganisationsComponent,
+        FeaturedOrganisationsComponent
     ],
     imports: [
         BrowserModule,

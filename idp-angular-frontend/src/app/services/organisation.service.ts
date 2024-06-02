@@ -7,6 +7,7 @@ import {PageResponse} from "../dtos/page-response";
 import {OrganisationAddRequest} from "../dtos/organisation-add-request";
 import {OrganisationEditRequest} from "../dtos/organisation-edit-request";
 import {OrganisationApprovalDto} from "../dtos/organisation-approval-dto";
+import {OrganisationFeatureDto} from "../dtos/organisation-feature-dto";
 
 @Injectable({
     providedIn: 'root'
@@ -24,6 +25,10 @@ export class OrganisationService {
     public deleteOrganisationPath = 'organisation';
 
     public approveOrganisationPath = 'organisation/approve';
+
+    public featureOrganisationPath = 'organisation/feature';
+
+    public getAllOrganisationsFeaturedPath = 'organisation/all-featured';
 
     constructor(private http: HttpClient,
                 private urlService: UrlService) { }
@@ -55,5 +60,13 @@ export class OrganisationService {
 
     approveOrganisation(dto: OrganisationApprovalDto): Observable<any> {
         return this.http.post<any>(this.urlService.getUrl(this.approveOrganisationPath), dto);
+    }
+
+    featureOrganisation(dto: OrganisationFeatureDto): Observable<any> {
+        return this.http.post<any>(this.urlService.getUrl(this.featureOrganisationPath), dto);
+    }
+
+    getAllOrganisationsFeatured(): Observable<OrganisationResponse[]> {
+        return this.http.get<OrganisationResponse[]>(this.urlService.getUrl(this.getAllOrganisationsFeaturedPath));
     }
 }
