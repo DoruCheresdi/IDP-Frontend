@@ -20,6 +20,8 @@ export class OrganisationService {
 
     public addOrganisationPath = 'organisation';
 
+    public getOrganisationPath = 'organisation';
+
     public editOrganisationPath = 'organisation';
 
     public deleteOrganisationPath = 'organisation';
@@ -32,6 +34,10 @@ export class OrganisationService {
 
     constructor(private http: HttpClient,
                 private urlService: UrlService) { }
+
+    getOrganisationById(id: string): Observable<OrganisationResponse> {
+        return this.http.get<OrganisationResponse>(this.urlService.getUrl(this.getOrganisationPath) + '/' + id);
+    }
 
     getOrganisationsPaged(page: number, size: number): Observable<PageResponse<OrganisationResponse>> {
         return this.http.get<PageResponse<OrganisationResponse>>(this.urlService.getUrl(this.getOrganisationsPagedPath), {
