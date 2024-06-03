@@ -12,7 +12,7 @@
             <label for="firstName" class="block">Firstname</label>
             <input id="firstName" type="text" pInputText placeholder="Firstname" formControlName="firstName"
                    class="w-full"/>
-            <small class="p-error block" *ngIf="userForm.get('firstname')?.invalid && userForm.get('firstname')?.dirty">
+            <small class="p-error block" *ngIf="userForm.get('firstName')?.invalid && userForm.get('firstName')?.dirty">
                 Firstname is required</small>
         </div>
 
@@ -20,7 +20,7 @@
             <label for="lastName" class="block">Lastname</label>
             <input id="lastName" type="text" pInputText placeholder="Lastname" formControlName="lastName"
                    class="w-full"/>
-            <small class="p-error block" *ngIf="userForm.get('lastname')?.invalid && userForm.get('lastname')?.dirty">
+            <small class="p-error block" *ngIf="userForm.get('lastName')?.invalid && userForm.get('lastName')?.dirty">
                 Lastname is required</small>
         </div>
 

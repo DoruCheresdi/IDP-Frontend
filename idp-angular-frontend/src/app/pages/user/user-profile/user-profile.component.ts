@@ -41,6 +41,7 @@ export class UserProfileComponent implements OnInit {
     }
 
     goToEditUserInfo() {
+        this.router.navigate(['/user-edit']);
     }
 
     goToChangePassword() {

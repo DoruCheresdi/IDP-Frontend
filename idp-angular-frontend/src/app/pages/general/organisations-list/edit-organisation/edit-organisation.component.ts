@@ -57,7 +57,11 @@ export class EditOrganisationComponent implements OnInit {
 
         const orgRequest = new OrganisationEditRequest(name, description, iban, id);
         this.organisationService.editOrganisation(orgRequest).subscribe({
-                next: data => this.router.navigateByUrl('/org-list'),
+                next: data => {
+                    this.messageService.add({severity: 'success', summary: 'Success', detail: 'Organisation edited successfully'});
+                    console.log('org')
+                    this.router.navigateByUrl('/')
+                },
                 error: _ => this.messageService.add({severity: 'error', summary: 'Error', detail: 'Could not edit organisation'})
             }
         );

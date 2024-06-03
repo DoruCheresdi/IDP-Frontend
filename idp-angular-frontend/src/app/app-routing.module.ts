@@ -21,6 +21,7 @@ import {FeaturedOrganisationsComponent} from "./pages/home/featured-organisation
 import {isAdminGuard} from "./services/extra/is-admin.guard";
 import {OrganisationComponent} from "./pages/home/organisation/organisation.component";
 import {UserProfileComponent} from "./pages/user/user-profile/user-profile.component";
+import {EditUserDataComponent} from "./pages/user/edit-user-data/edit-user-data.component";
 
 // const routes: Routes = [{ path: '', component: HomeComponent, pathMatch: 'full' },
 //   {onSameUrlNavigation: 'reload'}];
@@ -40,7 +41,8 @@ import {UserProfileComponent} from "./pages/user/user-profile/user-profile.compo
             { path: 'organisations/favorite', component: FavoriteOrganisationsComponent, canActivate: [isAuthenticatedGuard]},
             { path: 'organisations/featured', component: FeaturedOrganisationsComponent, canActivate: [isAuthenticatedGuard]},
             { path: 'organisation/:id', component: OrganisationComponent, canActivate: [isAuthenticatedGuard]},
-            { path: 'user-profile', component: UserProfileComponent, canActivate: [isAuthenticatedGuard]}
+            { path: 'user-profile', component: UserProfileComponent, canActivate: [isAuthenticatedGuard]},
+            { path: 'user-edit', component: EditUserDataComponent, canActivate: [isAuthenticatedGuard]},
         ],
         {onSameUrlNavigation: 'reload'})],
     exports: [RouterModule]

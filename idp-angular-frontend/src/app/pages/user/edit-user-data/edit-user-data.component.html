@@ -1,0 +1,29 @@
+<p-card header="Register" styleClass="user-form" class="flex justify-content-center mt-8">
+    <form [formGroup]="userForm" (ngSubmit)="editUserData()" novalidate>
+        <div class="field">
+            <label for="email" class="block">Email</label>
+            <input id="email" type="text" pInputText placeholder="Email" formControlName="email"
+                   class="w-full"/>
+            <small class="p-error block" *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.dirty">
+                Email is required</small>
+        </div>
+
+        <div class="field">
+            <label for="firstName" class="block">Firstname</label>
+            <input id="firstName" type="text" pInputText placeholder="Firstname" formControlName="firstName"
+                   class="w-full"/>
+            <small class="p-error block" *ngIf="userForm.get('firstName')?.invalid && userForm.get('firstName')?.dirty">
+                Firstname is required</small>
+        </div>
+
+        <div class="field">
+            <label for="lastName" class="block">Lastname</label>
+            <input id="lastName" type="text" pInputText placeholder="Lastname" formControlName="lastName"
+                   class="w-full"/>
+            <small class="p-error block" *ngIf="userForm.get('lastName')?.invalid && userForm.get('lastName')?.dirty">
+                Lastname is required</small>
+        </div>
+
+        <button pButton type="submit" label="Edit User Data"></button>
+    </form>
+</p-card>

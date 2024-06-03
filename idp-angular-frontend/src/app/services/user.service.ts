@@ -15,6 +15,8 @@ export class UserService {
 
     public userDataPath = 'user/data';
 
+    public userEditPath = 'user/edit';
+
     constructor(private http: HttpClient,
                 private urlService: UrlService) { }
 
@@ -26,4 +28,9 @@ export class UserService {
     getCurrentUserData(): Observable<UserResponse> {
         return this.http.get<any>(this.urlService.getUrl(this.userDataPath));
     }
+
+    editUserData(request: any): Observable<any> {
+        return this.http.put<any>(this.urlService.getUrl(this.userEditPath), request);
+    }
+
 }
