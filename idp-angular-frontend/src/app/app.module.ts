@@ -44,6 +44,7 @@ import { FeaturedOrganisationsComponent } from './pages/home/featured-organisati
 import { OrganisationComponent } from './pages/home/organisation/organisation.component';
 import { ReviewsForOrganisationComponent } from './pages/home/reviews-for-organisation/reviews-for-organisation.component';
 import { UserProfileComponent } from './pages/user/user-profile/user-profile.component';
+import {FileUploadModule} from "primeng/fileupload";
 
 @NgModule({
     declarations: [
@@ -89,7 +90,8 @@ import { UserProfileComponent } from './pages/user/user-profile/user-profile.com
         ToastModule,
         ChipModule,
         DataViewModule,
-        RatingModule
+        RatingModule,
+        FileUploadModule
     ],
     providers: [
         AuthService,

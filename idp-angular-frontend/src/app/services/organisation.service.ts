@@ -38,6 +38,8 @@ export class OrganisationService {
 
     public getAllFavoriteOrganisationsPath = 'organisation/get-all-fav-orgs';
 
+    public addOrgPicture = 'organisation/upload-picture';
+
     constructor(private http: HttpClient,
                 private urlService: UrlService) { }
 
@@ -92,5 +94,19 @@ export class OrganisationService {
 
     getAllFavoriteOrganisations(): Observable<OrganisationResponse[]> {
         return this.http.get<OrganisationResponse[]>(this.urlService.getUrl(this.getAllFavoriteOrganisationsPath));
+    }
+
+    changeOrganisationPicture(organisationId: string, file: File): Observable<any> {
+        const formData = new FormData();
+        formData.append("picture", file);
+        return this.http.post<any>(this.urlService.getUrl(this.addOrgPicture) + '/' + organisationId, formData);
+    }
+
+    getOrganisationImageLink(organisationId: string, orgPictureName: string): string {
+        return this.urlService.getUrl('assets/org-pictures/'+ organisationId + '/' + orgPictureName);
+    }
+
+    getUploadPictureUrl(organisationId: string): string {
+        return this.urlService.getUrl(this.addOrgPicture) + '/' + organisationId;
     }
 }

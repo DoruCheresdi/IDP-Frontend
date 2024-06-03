@@ -1,8 +1,13 @@
 <div class="flex justify-content-center">
     <div class="block w-8 bg-white mt-5">
         <div class="m-4">
-            <img class="w-9 w-22rem shadow-2 block xl:block mx-auto border-round mt-5"
-                 [src]="'https://primefaces.org/cdn/primeng/images/demo/product/bamboo-watch.jpg'"
+<!--            <label for="fileUploadProfilePic">-->
+<!--                <img class="w-9 w-22rem shadow-2 block xl:block mx-auto border-round mt-5"-->
+<!--                     [src]="'https://primefaces.org/cdn/primeng/images/demo/product/bamboo-watch.jpg'"-->
+<!--                     [alt]="organisation.name" />-->
+<!--            </label>-->
+            <img *ngIf="organisation.picture" class="h-12rem shadow-2 block mx-auto border-round mt-5"
+                 [src]="getOrganisationImageLink()"
                  [alt]="organisation.name" />
             <h1 class="text-center">{{organisation.name}}</h1>
             <div class="flex justify-content-center">
@@ -21,6 +26,26 @@
                     <i class="pi pi-times mr-2"></i>
                     Remove from favorites
                 </p-button>
+<!--                <label for="fileUploadProfilePic">-->
+<!--                    <p-button *ngIf="isOwner" class="m-2 block">-->
+<!--                        <i class="pi pi-cloud-upload mr-2"></i>-->
+<!--                        Change Profile Picture-->
+<!--                    </p-button>-->
+<!--                </label>-->
+<!--                <input type="file" id="fileUploadProfilePic" class="" accept="image/png, image/jpeg" (change)="changePicture($event)" #fileUploadProfilePic>-->
+
+                <p-fileUpload
+                    *ngIf="isOwner && !isNullOrUndefined(organisation.id)"
+                    mode="basic"
+                    chooseLabel="Change Profile Picture"
+                    chooseIcon="pi pi-upload"
+                    name="picture"
+                    accept="image/*"
+                    [maxFileSize]="1000000"
+                    [url]="getUploadPictureUrl()"
+                    (onUpload)="afterChangePicture()"
+                    class="m-2"
+                    [auto]="true"/>
             </div>
             <p *ngIf="organisation.orgLink">
                 Link to website: <a [href]="organisation.orgLink">{{organisation.orgLink}}</a>

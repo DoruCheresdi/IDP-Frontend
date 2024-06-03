@@ -4,11 +4,12 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {OrganisationResponse} from "../../../dtos/organisation-response";
 import {AuthService} from "../../../services/auth.service";
+import {isNullOrUndefined} from "../../../util/utils";
 
 @Component({
-  selector: 'app-organisation',
-  templateUrl: './organisation.component.html',
-  styleUrls: ['./organisation.component.css']
+    selector: 'app-organisation',
+    templateUrl: './organisation.component.html',
+    styleUrls: ['./organisation.component.css']
 })
 export class OrganisationComponent implements OnInit {
 
@@ -89,9 +90,41 @@ export class OrganisationComponent implements OnInit {
     }
 
     determineIfHasFavoritedOrg(): void {
-        console.log(this.organisation)
         const userEmail = this.authService.getOwnerEmail();
         this.hasFavoritedOrg = this.organisation.usersThatFavorited.some(user => user.email === userEmail);
-        console.log(this.hasFavoritedOrg);
     }
+
+    // changePicture(event: any) {
+    //     const file = event.target.files[0];
+    //     console.log(file);
+    //     if (!file) {
+    //         this.messageService.add({severity: 'error', summary: 'Error', detail: 'No file selected'});
+    //         return;
+    //     }
+    //
+    //     this.organisationService.changeOrganisationPicture(this.organisation.id, file).subscribe({
+    //         next: () => {
+    //             this.messageService.add({severity: 'success', summary: 'Success', detail: 'Organisation picture changed'});
+    //             this.fetchOrganisation();
+    //         },
+    //         error: (error: any) => {
+    //             this.messageService.add({severity: 'error', summary: 'Error', detail: 'Could not change organisation picture'});
+    //         }
+    //     });
+    // }
+
+    getOrganisationImageLink(): string {
+        return this.organisationService.getOrganisationImageLink(this.organisation.id, this.organisation.picture);
+    }
+
+    getUploadPictureUrl(): string {
+        return this.organisationService.getUploadPictureUrl(this.organisation.id);
+    }
+
+    afterChangePicture() {
+        this.messageService.add({severity: 'success', summary: 'Success', detail: 'Organisation picture changed'});
+        this.fetchOrganisation();
+    }
+
+    protected readonly isNullOrUndefined = isNullOrUndefined;
 }
