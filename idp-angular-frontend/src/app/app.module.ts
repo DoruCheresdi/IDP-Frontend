@@ -45,6 +45,7 @@ import { OrganisationComponent } from './pages/home/organisation/organisation.co
 import { ReviewsForOrganisationComponent } from './pages/home/reviews-for-organisation/reviews-for-organisation.component';
 import { UserProfileComponent } from './pages/user/user-profile/user-profile.component';
 import {FileUploadModule} from "primeng/fileupload";
+import { EditUserDataComponent } from './pages/user/edit-user-data/edit-user-data.component';
 
 @NgModule({
     declarations: [
@@ -66,7 +67,8 @@ import {FileUploadModule} from "primeng/fileupload";
         FeaturedOrganisationsComponent,
         OrganisationComponent,
         ReviewsForOrganisationComponent,
-        UserProfileComponent
+        UserProfileComponent,
+        EditUserDataComponent
     ],
     imports: [
         BrowserModule,

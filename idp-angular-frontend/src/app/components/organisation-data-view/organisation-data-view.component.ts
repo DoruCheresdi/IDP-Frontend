@@ -24,4 +24,8 @@ export class OrganisationDataViewComponent {
     navigateToOrganisation(organisation: OrganisationResponse): void {
         this.router.navigate(['/organisation', organisation.id]);
     }
+
+    getOrganisationPictureUrl(organisation: OrganisationResponse): string {
+        return this.organisationService.getOrganisationPictureLink(organisation.id, organisation.picture);
+    }
 }

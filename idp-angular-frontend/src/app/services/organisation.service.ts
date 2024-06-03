@@ -102,7 +102,7 @@ export class OrganisationService {
         return this.http.post<any>(this.urlService.getUrl(this.addOrgPicture) + '/' + organisationId, formData);
     }
 
-    getOrganisationImageLink(organisationId: string, orgPictureName: string): string {
+    getOrganisationPictureLink(organisationId: string, orgPictureName: string): string {
         return this.urlService.getUrl('assets/org-pictures/'+ organisationId + '/' + orgPictureName);
     }
 

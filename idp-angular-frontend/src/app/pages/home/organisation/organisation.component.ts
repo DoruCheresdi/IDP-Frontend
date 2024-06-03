@@ -113,8 +113,8 @@ export class OrganisationComponent implements OnInit {
     //     });
     // }
 
-    getOrganisationImageLink(): string {
-        return this.organisationService.getOrganisationImageLink(this.organisation.id, this.organisation.picture);
+    getOrganisationPictureLink(): string {
+        return this.organisationService.getOrganisationPictureLink(this.organisation.id, this.organisation.picture);
     }
 
     getUploadPictureUrl(): string {
