@@ -24,7 +24,7 @@ export class FavoriteOrganisationsComponent implements OnInit {
     }
 
     fetchOrganisations(): void {
-        this.organisationService.getOrganisationsAll().subscribe({
+        this.organisationService.getAllFavoriteOrganisations().subscribe({
                 next: (response: OrganisationResponse[]) => {
                     this.organisations = response;
                 },

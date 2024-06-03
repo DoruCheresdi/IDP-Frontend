@@ -14,7 +14,11 @@ export class OrganisationComponent implements OnInit {
 
     organisation: OrganisationResponse = {} as OrganisationResponse;
 
+    orgId: string = '';
+
     isOwner: boolean = false;
+
+    hasFavoritedOrg: boolean = false;
 
     constructor(private organisationService: OrganisationService,
                 private route: ActivatedRoute,
@@ -30,10 +34,16 @@ export class OrganisationComponent implements OnInit {
             this.showCannotFindOrgError();
             return;
         }
-        this.organisationService.getOrganisationById(id).subscribe({
+        this.orgId = id;
+        this.fetchOrganisation();
+    }
+
+    private fetchOrganisation() {
+        this.organisationService.getOrganisationById(this.orgId).subscribe({
                 next: (response: OrganisationResponse) => {
                     this.organisation = response;
                     this.isOwner = this.determineIfIsOwner();
+                    this.determineIfHasFavoritedOrg();
                 },
                 error: (error: any) => {
                     this.showCannotFindOrgError();
@@ -52,5 +62,36 @@ export class OrganisationComponent implements OnInit {
 
     goToEditOrganisation() {
         this.router.navigateByUrl('/organisation/edit', {state: {data: this.organisation}});
+    }
+
+    addOrgToFavorites() {
+        this.organisationService.addOrganisationToFavorites(this.organisation.id).subscribe({
+            next: () => {
+                this.messageService.add({severity: 'success', summary: 'Success', detail: 'Organisation added to favorites'});
+                this.fetchOrganisation();
+            },
+            error: (error: any) => {
+                this.messageService.add({severity: 'error', summary: 'Error', detail: 'Could not add organisation to favorites'});
+            }
+        });
+    }
+
+    removeOrgFromFavorites() {
+        this.organisationService.removeOrganisationFromFavorites(this.organisation.id).subscribe({
+            next: () => {
+                this.messageService.add({severity: 'success', summary: 'Success', detail: 'Organisation removed from favorites'});
+                this.fetchOrganisation();
+            },
+            error: (error: any) => {
+                this.messageService.add({severity: 'error', summary: 'Error', detail: 'Could not remove organisation from favorites'});
+            }
+        });
+    }
+
+    determineIfHasFavoritedOrg(): void {
+        console.log(this.organisation)
+        const userEmail = this.authService.getOwnerEmail();
+        this.hasFavoritedOrg = this.organisation.usersThatFavorited.some(user => user.email === userEmail);
+        console.log(this.hasFavoritedOrg);
     }
 }

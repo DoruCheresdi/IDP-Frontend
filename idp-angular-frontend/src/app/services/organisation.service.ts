@@ -32,6 +32,12 @@ export class OrganisationService {
 
     public getAllOrganisationsFeaturedPath = 'organisation/all-featured';
 
+    public addOrganisationToFavoritePath = 'organisation/add-favorite';
+
+    public removeOrganisationToFavoritePath = 'organisation/remove-favorite';
+
+    public getAllFavoriteOrganisationsPath = 'organisation/get-all-fav-orgs';
+
     constructor(private http: HttpClient,
                 private urlService: UrlService) { }
 
@@ -74,5 +80,17 @@ export class OrganisationService {
 
     getAllOrganisationsFeatured(): Observable<OrganisationResponse[]> {
         return this.http.get<OrganisationResponse[]>(this.urlService.getUrl(this.getAllOrganisationsFeaturedPath));
+    }
+
+    addOrganisationToFavorites(organisationId: string): Observable<any> {
+        return this.http.post<any>(this.urlService.getUrl(this.addOrganisationToFavoritePath), organisationId);
+    }
+
+    removeOrganisationFromFavorites(organisationId: string): Observable<any> {
+        return this.http.post<any>(this.urlService.getUrl(this.removeOrganisationToFavoritePath), organisationId);
+    }
+
+    getAllFavoriteOrganisations(): Observable<OrganisationResponse[]> {
+        return this.http.get<OrganisationResponse[]>(this.urlService.getUrl(this.getAllFavoriteOrganisationsPath));
     }
 }
