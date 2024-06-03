@@ -1,0 +1,37 @@
+<div class="flex justify-content-center">
+    <div class="block w-8 bg-white mt-5">
+        <div class="m-4">
+            <img class="w-9 w-22rem shadow-2 block xl:block mx-auto border-round mt-5"
+                 [src]="'https://primefaces.org/cdn/primeng/images/demo/product/bamboo-watch.jpg'"
+                 [alt]="'No Profile Picture'" />
+            <h1 class="text-center">{{userData.firstname + ' ' + userData.lastname}}</h1>
+            <div class="flex">
+                <p-button class="m-2 block" (onClick)="goToEditUserInfo()">
+                    Edit User Info
+                    <i class="pi pi-arrow-right ml-2"></i>
+                </p-button>
+                <p-button class="m-2 block" (onClick)="goToChangePassword()">
+                    Change password
+                </p-button>
+                <p-button class="m-2 block" (onClick)="changeProfilePicture()">
+                    Change profile picture
+                </p-button>
+                <p-button class="m-2 block" (onClick)="uploadCV()">
+                    Upload CV
+                </p-button>
+                <p-button class="m-2 block" (onClick)="downloadCV()">
+                    Download CV
+                </p-button>
+            </div>
+            <p>
+                First Name: {{userData.firstname}}
+            </p>
+            <p>
+                Last Name: {{userData.firstname}}
+            </p>
+            <p>
+                Email: {{userData.email}}
+            </p>
+        </div>
+    </div>
+</div>

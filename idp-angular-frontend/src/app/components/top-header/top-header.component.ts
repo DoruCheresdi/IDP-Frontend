@@ -26,6 +26,8 @@ export class TopHeaderComponent {
 
     private HOME_LABEL = '';
 
+    private PROFILE_LABEL = 'Profile';
+
     loginItem: MenuItem = {
         label: this.LOGIN_LABEL,
         icon: 'pi pi-fw pi-lock',
@@ -68,6 +70,12 @@ export class TopHeaderComponent {
         routerLink: '/'
     }
 
+    profileItem: MenuItem = {
+        label: this.PROFILE_LABEL,
+        icon: 'pi pi-fw pi-user',
+        routerLink: '/user-profile'
+    }
+
     adminItems: MenuItem[] = [
         this.orgListItem,
         this.reviewListItem
@@ -76,7 +84,8 @@ export class TopHeaderComponent {
     loggedInItems: MenuItem[] = [
         this.homeItem,
         this.logoutItem,
-        this.feedbackItem
+        this.feedbackItem,
+        this.profileItem
     ];
 
     loogedOutItems: MenuItem[] = [

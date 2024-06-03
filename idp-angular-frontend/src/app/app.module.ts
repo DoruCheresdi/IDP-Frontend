@@ -43,6 +43,7 @@ import { FavoriteOrganisationsComponent } from './pages/home/favorite-organisati
 import { FeaturedOrganisationsComponent } from './pages/home/featured-organisations/featured-organisations.component';
 import { OrganisationComponent } from './pages/home/organisation/organisation.component';
 import { ReviewsForOrganisationComponent } from './pages/home/reviews-for-organisation/reviews-for-organisation.component';
+import { UserProfileComponent } from './pages/user/user-profile/user-profile.component';
 
 @NgModule({
     declarations: [
@@ -63,7 +64,8 @@ import { ReviewsForOrganisationComponent } from './pages/home/reviews-for-organi
         FavoriteOrganisationsComponent,
         FeaturedOrganisationsComponent,
         OrganisationComponent,
-        ReviewsForOrganisationComponent
+        ReviewsForOrganisationComponent,
+        UserProfileComponent
     ],
     imports: [
         BrowserModule,
