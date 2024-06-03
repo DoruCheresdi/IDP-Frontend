@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import {OrganisationAddRequest} from "../../../../dtos/organisation-add-request";
 import {OrganisationEditRequest} from "../../../../dtos/organisation-edit-request";
 import {OrganisationResponse} from "../../../../dtos/organisation-response";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-edit-organisation',
@@ -22,7 +23,8 @@ export class EditOrganisationComponent implements OnInit {
 
     constructor(private organisationService: OrganisationService,
                 private fb: FormBuilder,
-                private router: Router) {
+                private router: Router,
+                private messageService: MessageService) {
         // this works only in constructor:
         this.mapOrganisationFromRouteData();
     }
@@ -45,8 +47,7 @@ export class EditOrganisationComponent implements OnInit {
 
     editOrganisation(): void {
         if (!this.editOrganisationFrom.valid) {
-            alert('Invalid Form');
-            console.log(this.editOrganisationFrom.errors)
+            this.messageService.add({severity: 'error', summary: 'Error', detail: 'Please fill all fields'});
             return;
         }
         const name = this.editOrganisationFrom.controls['name'].value as string;
@@ -57,7 +58,7 @@ export class EditOrganisationComponent implements OnInit {
         const orgRequest = new OrganisationEditRequest(name, description, iban, id);
         this.organisationService.editOrganisation(orgRequest).subscribe({
                 next: data => this.router.navigateByUrl('/org-list'),
-                error: _ => alert('Invalid Request')
+                error: _ => this.messageService.add({severity: 'error', summary: 'Error', detail: 'Could not edit organisation'})
             }
         );
     }

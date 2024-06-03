@@ -44,7 +44,6 @@ export class AddReviewComponent implements OnInit {
     addReview(): void {
         if (!this.addReviewForm.valid) {
             this.messageService.add({severity: 'error', summary: 'Error', detail: 'Please fill all fields'});
-            console.log(this.addReviewForm.errors)
             return;
         }
         const stars = this.addReviewForm.controls['stars'].value as number;

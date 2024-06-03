@@ -55,7 +55,6 @@ export class ReviewsForOrganisationComponent implements OnInit {
     deleteReview() {
         // find the review of the user to delete:
         const review = this.reviews.find(review => review.reviewerEmail === this.authService.getOwnerEmail());
-        console.log(review);
         if (!review) {
             this.messageService.add({severity: 'error', summary: 'Error', detail: 'Could not find review to delete'});
             return;

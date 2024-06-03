@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FooComponent } from "./foo.component";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { AuthService } from "./services/auth.service";
 import { LoginComponent } from './pages/general/login/login.component';
@@ -48,7 +47,6 @@ import { ReviewsForOrganisationComponent } from './pages/home/reviews-for-organi
 @NgModule({
     declarations: [
         AppComponent,
-        FooComponent,
         LoginComponent,
         TopHeaderComponent,
         RegisterComponent,

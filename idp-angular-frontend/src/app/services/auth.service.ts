@@ -9,6 +9,8 @@ import {AuthenticationRequest} from "../dtos/authentication-request";
 import {Router} from "@angular/router";
 import {EventService} from "./event.service";
 import {TokenPayload} from "../model/token-payload";
+import {isNullOrUndefined} from "../util/utils";
+import {MessageService} from "primeng/api";
 
 export class Foo {
     constructor(
@@ -23,7 +25,8 @@ export class AuthService {
     public authenticationPath = 'auth/authenticate';
 
     constructor(private http: HttpClient, private urlService: UrlService,
-                private router: Router, private eventService: EventService){}
+                private router: Router, private eventService: EventService,
+                private messageService: MessageService){}
 
     authenticate(email: string, password: string): void {
         const authenticationRequest = new AuthenticationRequest(email, password);
@@ -31,7 +34,7 @@ export class AuthService {
         this.http.post<TokenResponse>(this.urlService.getUrl(this.authenticationPath), authenticationRequest)
             .subscribe({
                     next: data => this.successfulAuth(data),
-                    error: _ => alert('Invalid Credentials')
+                    error: _ => this.messageService.add({severity: 'error', summary: 'Error', detail: 'Could not authenticate user'})
                 }
             );
     }
@@ -47,16 +50,6 @@ export class AuthService {
         // window.location.href = this.urlService.frontendUrl;
     }
 
-    getResource(resourceUrl: any) : Observable<any>{
-        return this.http.get(resourceUrl)
-            .pipe(catchError((error:any) => throwError( 'Server error')));
-    }
-
-    postResource(resourceUrl: any, body: any) : Observable<any>{
-        return this.http.post(resourceUrl, body)
-            .pipe(catchError((error:any) => throwError( 'Server error')));
-    }
-
     checkCredentials(): boolean {
         return Cookie.check('access_token');
     }
@@ -64,7 +57,8 @@ export class AuthService {
     logout() {
         Cookie.delete('access_token');
         this.eventService.logoutEvent.emit();
-        window.location.reload();
+        this.router.navigateByUrl('/login');
+        // window.location.reload();
     }
 
     // getOrganization(){ -> Get Claim from token
@@ -78,7 +72,10 @@ export class AuthService {
 
     isAdmin(): boolean {
         var token = Cookie.get("access_token");
+        if (isNullOrUndefined(token)) return false;
+        console.log('token ' + token);
         var payload = this.jwtHelper.decodeToken(token) as TokenPayload;
+        if (isNullOrUndefined(payload)) return false;
         return payload.Role === 'ADMIN';
     }
 

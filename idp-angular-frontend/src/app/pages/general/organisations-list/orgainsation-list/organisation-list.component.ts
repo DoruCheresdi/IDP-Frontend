@@ -53,7 +53,7 @@ export class OrganisationListComponent implements OnInit {
                     this.organisations = response;
                 },
                 error: (error: any) => {
-                    alert(error);
+                    this.messageService.add({severity: 'error', summary: 'Error', detail: 'Could not fetch organisations'});
                 }
             }
         );

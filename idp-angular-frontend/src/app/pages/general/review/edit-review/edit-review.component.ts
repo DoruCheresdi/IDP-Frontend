@@ -59,7 +59,7 @@ export class EditReviewComponent implements OnInit {
         const reviewRequest = new ReviewEditRequest(stars, title, description, id);
         this.reviewService.editReview(reviewRequest).subscribe({
                 next: data => this.location.back(),
-                error: _ => alert('Invalid Request')
+                error: _ => this.messageService.add({severity: 'error', summary: 'Error', detail: 'Could not edit review'})
             }
         );
     }

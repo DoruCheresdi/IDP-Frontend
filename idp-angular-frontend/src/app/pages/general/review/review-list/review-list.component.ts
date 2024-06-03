@@ -35,7 +35,7 @@ export class ReviewListComponent implements OnInit {
                     this.reviews = response;
                 },
                 error: (error: any) => {
-                    alert(error);
+                    this.messageService.add({severity: 'error', summary: 'Error', detail: 'Could not fetch reviews'});
                 }
             }
         );

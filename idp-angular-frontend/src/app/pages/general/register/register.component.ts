@@ -3,6 +3,7 @@ import {AuthService} from "../../../services/auth.service";
 import {FormBuilder, Validators} from "@angular/forms";
 import {UserService} from "../../../services/user.service";
 import {Router} from "@angular/router";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-register',
@@ -22,17 +23,17 @@ export class RegisterComponent {
 
     constructor(private userService: UserService,
                 private fb: FormBuilder,
-                private router: Router) { }
+                private router: Router,
+                private messageService: MessageService) { }
 
     register(): void {
         if (!this.userForm.valid) {
-            alert('Invalid Form');
-            console.log(this.userForm.errors)
+            this.messageService.add({severity: 'error', summary: 'Error', detail: 'Please fill all fields'});
             return;
         }
 
         if (this.userForm.controls['password'].value !== this.userForm.controls['password2'].value) {
-            alert('Passwords do not match');
+            this.messageService.add({severity: 'error', summary: 'Error', detail: 'Passwords do not match'});
             return;
         }
 
@@ -43,7 +44,7 @@ export class RegisterComponent {
 
         this.userService.register(email, password, firstName, lastName).subscribe({
                 next: data => this.router.navigateByUrl('/login'),
-                error: _ => alert('Invalid Request')
+                error: _ => this.messageService.add({severity: 'error', summary: 'Error', detail: 'Could not register user'})
             }
         );
     }

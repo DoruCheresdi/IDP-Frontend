@@ -95,14 +95,22 @@ export class TopHeaderComponent {
         } else {
             this.items = this.loogedOutItems;
         }
-        this.eventService.logoutEvent.subscribe(() => this.addLoginItemIfNotPresent());
-        this.eventService.loginEvent.subscribe(() => this.addLogoutItemIfNotPresent());
+        this.eventService.logoutEvent.subscribe(() => this.addMenuItems());
+        this.eventService.loginEvent.subscribe(() => this.addMenuItems());
     }
 
     logout() {
         this.authService.logout();
     }
 
+    addMenuItems() {
+        console.log('check auth ' + this.authService.checkCredentials());
+        if (this.authService.checkCredentials()) {
+            this.addLogoutItemIfNotPresent();
+        } else {
+            this.addLoginItemIfNotPresent();
+        }
+    }
     addLoginItemIfNotPresent() {
         this.items = this.loogedOutItems;
     }

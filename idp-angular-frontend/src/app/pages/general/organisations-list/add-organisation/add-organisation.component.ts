@@ -4,6 +4,7 @@ import {FormBuilder, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {OrganisationService} from "../../../../services/organisation.service";
 import {OrganisationAddRequest} from "../../../../dtos/organisation-add-request";
+import {MessageService} from "primeng/api";
 
 @Component({
     selector: 'app-add-organisation',
@@ -20,12 +21,12 @@ export class AddOrganisationComponent {
 
     constructor(private organisationService: OrganisationService,
                 private fb: FormBuilder,
-                private router: Router) { }
+                private router: Router,
+                private messageService: MessageService) { }
 
     addOrganisation(): void {
         if (!this.addOrganisationFrom.valid) {
-            alert('Invalid Form');
-            console.log(this.addOrganisationFrom.errors)
+            this.messageService.add({severity: 'error', summary: 'Error', detail: 'Please fill all fields'});
             return;
         }
         const name = this.addOrganisationFrom.controls['name'].value as string;
@@ -35,7 +36,7 @@ export class AddOrganisationComponent {
         const orgRequest = new OrganisationAddRequest(name, orgLink, description);
         this.organisationService.addOrganisation(orgRequest).subscribe({
                 next: data => this.router.navigateByUrl('/'),
-                error: _ => alert('Invalid Request')
+                error: _ => this.messageService.add({severity: 'error', summary: 'Error', detail: 'Could not add organisation'})
             }
         );
     }

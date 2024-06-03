@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {FeedbackService} from "../../../services/feedback.service";
 import {Feedback} from "../../../model/feedback";
 import {AuthService} from "../../../services/auth.service";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-feedback',
@@ -34,7 +35,8 @@ export class FeedbackComponent implements OnInit {
     constructor(private feedbackService: FeedbackService,
                 private fb: FormBuilder,
                 private router: Router,
-                private auth: AuthService) { }
+                private auth: AuthService,
+                private messageService: MessageService) { }
 
     feedbackForm = this.fb.group({
         comments: ['', Validators.required],
@@ -55,8 +57,7 @@ export class FeedbackComponent implements OnInit {
     submitFeedback(): void {
 
         if (!this.feedbackForm.valid) {
-            alert('Invalid Form');
-            console.log(this.feedbackForm.errors)
+            this.messageService.add({severity: 'error', summary: 'Error', detail: 'Please fill all fields'});
             return;
         }
 
@@ -68,7 +69,7 @@ export class FeedbackComponent implements OnInit {
 
         this.feedbackService.submitFeedback(comments, satisfactionLevelSelect, expectationRadioButton, improvementsCheckbox).subscribe({
                 next: feedback => this.lastFeedback = feedback,
-                error: _ => alert('Invalid Request')
+                error: _ => this.messageService.add({severity: 'error', summary: 'Error', detail: 'Could not submit feedback'})
             }
         );
     }

@@ -19,7 +19,6 @@ export class AuthBearerInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
         const accessToken = Cookie.get('access_token');
 
-        console.log('intercepted request ... ');
         if (isNullOrUndefined(accessToken)) {
             return next.handle(request);
         }
