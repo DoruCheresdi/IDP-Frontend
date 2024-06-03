@@ -55,7 +55,7 @@ export class AddReviewComponent implements OnInit {
         const reviewRequest = new ReviewAddRequest(stars, title, description, orgId);
         this.reviewService.addReview(reviewRequest).subscribe({
                 next: data => this.router.navigateByUrl('/organisation/' + orgId),
-                error: _ => alert('Invalid Request')
+                error: _ => this.messageService.add({severity: 'error', summary: 'Error', detail: 'Could not add review'})
             }
         );
     }

@@ -46,4 +46,37 @@ export class ReviewsForOrganisationComponent implements OnInit {
     goToAddReview() {
         this.router.navigate(['/add-review', this.organisation.id], {state: {data: this.organisation}});
     }
+
+    goToEditReview() {
+        const review = this.reviews.find(review => review.reviewerEmail === this.authService.getOwnerEmail());
+        this.router.navigate(['/review/edit'], {state: {data: review}});
+    }
+
+    deleteReview() {
+        // find the review of the user to delete:
+        const review = this.reviews.find(review => review.reviewerEmail === this.authService.getOwnerEmail());
+        console.log(review);
+        if (!review) {
+            this.messageService.add({severity: 'error', summary: 'Error', detail: 'Could not find review to delete'});
+            return;
+        }
+        this.confirmationService.confirm({
+            message: 'Are you sure that you want to delete your review?',
+            accept: () => {
+                this.reviewService.deleteReview(review.id).subscribe({
+                        next: _ => {
+                            this.messageService.add({severity: 'success', summary: 'Success', detail: 'Review deleted'});
+                            this.fetchReviews();
+                        },
+                        error: _ => {
+                            this.messageService.add({severity: 'error', summary: 'Error', detail: 'Could not delete review'});
+                        }
+                    }
+                );
+            }
+        }); }
+
+    currentUserHasMadeAReview(): boolean {
+        return this.reviews.some(review => review.reviewerEmail === this.authService.getOwnerEmail());
+    }
 }

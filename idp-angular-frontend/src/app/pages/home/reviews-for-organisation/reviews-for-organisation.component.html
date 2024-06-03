@@ -2,14 +2,24 @@
 <h3>
     Reviews
 </h3>
-<p-button class="m-2 block" (onClick)="goToAddReview()">
-    Add a review
-    <i class="pi pi-arrow-right ml-2"></i>
-</p-button>
+<div class="flex">
+    <p-button *ngIf="!currentUserHasMadeAReview()" class="m-2 block" (onClick)="goToAddReview()">
+        Add a review
+        <i class="pi pi-arrow-right ml-2"></i>
+    </p-button>
+    <p-button *ngIf="currentUserHasMadeAReview()" class="m-2 block" (onClick)="goToEditReview()" severity="warning">
+        Edit your review
+        <i class="pi pi-arrow-right ml-2"></i>
+    </p-button>
+    <p-button *ngIf="currentUserHasMadeAReview()" class="m-2 block" (onClick)="deleteReview()" severity="danger">
+        Delete your review
+        <i class="pi pi-arrow-right ml-2"></i>
+    </p-button>
+</div>
 <div *ngFor="let review of reviews">
     <p-card>
         <div class="flex justify-content-between">
-            <h4>{{review.title}}</h4>
+            <h4>{{review.title}} by {{review.reviewerName}}</h4>
             <p-rating [readonly]="true" [stars]="5" [cancel]="false" [(ngModel)]="review.stars"></p-rating>
         </div>
         <p>{{review.description}}</p>

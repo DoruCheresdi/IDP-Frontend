@@ -3,6 +3,9 @@ import {FormBuilder, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {ReviewService} from "../../../../services/review.service";
 import {ReviewEditRequest} from "../../../../dtos/review-edit-request";
+import {ReviewResponse} from "../../../../dtos/review-response";
+import {MessageService} from "primeng/api";
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-edit-review',
@@ -20,7 +23,9 @@ export class EditReviewComponent implements OnInit {
     });
     constructor(private reviewService: ReviewService,
                 private fb: FormBuilder,
-                private router: Router) {
+                private router: Router,
+                private messageService: MessageService,
+                private location: Location) {
         // this works only in constructor:
         this.mapReviewFromRouteData();
     }
@@ -31,7 +36,7 @@ export class EditReviewComponent implements OnInit {
 
     mapReviewFromRouteData() {
         const lastRouteData = this.router.getCurrentNavigation()?.extras.state as any;
-        const reviewToEdit = lastRouteData?.data as any;
+        const reviewToEdit = lastRouteData?.data as ReviewResponse;
         if (reviewToEdit) {
             this.editReviewFrom.controls['id'].setValue(reviewToEdit.id);
             this.editReviewFrom.controls['stars'].setValue(reviewToEdit.stars);
@@ -42,7 +47,7 @@ export class EditReviewComponent implements OnInit {
 
     editReview(): void {
         if (!this.editReviewFrom.valid) {
-            alert('Invalid Form');
+            this.messageService.add({severity: 'error', summary: 'Error', detail: 'Please fill all fields'});
             console.log(this.editReviewFrom.errors)
             return;
         }
@@ -53,7 +58,7 @@ export class EditReviewComponent implements OnInit {
 
         const reviewRequest = new ReviewEditRequest(stars, title, description, id);
         this.reviewService.editReview(reviewRequest).subscribe({
-                next: data => this.router.navigateByUrl('/review-list'),
+                next: data => this.location.back(),
                 error: _ => alert('Invalid Request')
             }
         );

@@ -1,19 +1,18 @@
 <p-card header="Edit review" styleClass="user-form" class="flex justify-content-center mt-8">
     <form [formGroup]="editReviewFrom" (ngSubmit)="editReview()" novalidate>
         <div class="field">
-            <label for="id" class="block">Id</label>
-            <input id="id" type="text" pInputText placeholder="Id" formControlName="id"
+            <label for="title" class="block">Title</label>
+            <input id="title" type="text" pInputText placeholder="Title" formControlName="title"
                    class="w-full"/>
-            <small class="p-error block" *ngIf="editReviewFrom.get('id')?.invalid && editReviewFrom.get('id')?.dirty">
-                Id is required</small>
+            <small class="p-error block" *ngIf="editReviewFrom.get('title')?.invalid && editReviewFrom.get('title')?.dirty">
+                Title is required</small>
         </div>
 
-        <div class="field">
-            <label for="stars" class="block">Stars</label>
-            <input id="stars" type="text" pInputText placeholder="Stars" formControlName="stars"
-                   class="w-full"/>
+        <div class="mb-4 mt-4">
+            <label for="stars" class="block mb-4">Stars</label>
             <small class="p-error block" *ngIf="editReviewFrom.get('stars')?.invalid && editReviewFrom.get('stars')?.dirty">
                 Stars is required</small>
+            <p-rating id="stars" formControlName="stars"></p-rating>
         </div>
 
         <div class="field">
@@ -22,15 +21,6 @@
                    class="w-full"/>
             <small class="p-error block" *ngIf="editReviewFrom.get('description')?.invalid && editReviewFrom.get('description')?.dirty">
                 Description is required</small>
-        </div>
-
-
-        <div class="field">
-            <label for="title" class="block">Title</label>
-            <input id="title" type="text" pInputText placeholder="Title" formControlName="title"
-                   class="w-full"/>
-            <small class="p-error block" *ngIf="editReviewFrom.get('title')?.invalid && editReviewFrom.get('title')?.dirty">
-                Title is required</small>
         </div>
 
         <button pButton type="submit" label="Edit Review"></button>
