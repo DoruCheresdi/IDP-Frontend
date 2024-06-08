@@ -18,10 +18,9 @@
                             <button pButton icon="pi pi-arrow-right" class="md:align-self-end mb-2 p-button-rounded"
                                     (click)="navigateToOrganisation(organisation)"></button>
                             <div class="flex align-items-center gap-3">
-                                <span class="flex align-items-center gap-2">
-                                    <i class="pi pi-tag"></i>
-                                    <span class="font-semibold">{{ organisation.category }}</span>
-                                </span>
+                                <p-tag *ngFor="let domain of organisation.domains"
+                                       [value]="domain.name" severity="success">
+                                </p-tag>
                             </div>
                         </div>
                     </div>

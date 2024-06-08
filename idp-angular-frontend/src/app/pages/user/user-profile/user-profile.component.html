@@ -38,6 +38,7 @@
             <div class="card flex gap-2 mb-4">
                 <p-tag
                     *ngFor="let domain of userData.domains"
+                    [icon]="'pi pi-times'"
                     [value]="domain.name"
                     (click)="removeDomain(domain)">
                 </p-tag>

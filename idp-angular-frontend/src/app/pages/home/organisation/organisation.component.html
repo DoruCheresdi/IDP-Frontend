@@ -16,6 +16,7 @@
             <div class="card flex justify-content-center gap-2 mb-1 mt-1">
                 <p-tag
                     *ngFor="let domain of organisation.domains"
+                    [icon]="isOwner ? 'pi pi-times' : ''"
                     [value]="domain.name"
                     (click)="removeDomain(domain)">
                 </p-tag>
