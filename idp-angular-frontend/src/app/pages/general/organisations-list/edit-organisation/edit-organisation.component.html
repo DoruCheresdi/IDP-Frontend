@@ -26,8 +26,8 @@
 
         <div class="field">
             <label for="description" class="block">Description</label>
-            <input id="description" type="text" pInputText placeholder="Description" formControlName="description"
-                   class="w-full"/>
+            <textarea id="description" type="text" pInputTextarea placeholder="Description" formControlName="description"
+                      class="w-full" rows="5" cols="50"></textarea>
             <small class="p-error block" *ngIf="editOrganisationFrom.get('description')?.invalid && editOrganisationFrom.get('description')?.dirty">
                 Description is required</small>
         </div>

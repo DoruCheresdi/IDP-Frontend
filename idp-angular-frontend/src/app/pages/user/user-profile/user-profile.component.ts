@@ -5,6 +5,10 @@ import {ConfirmationService, MessageService} from "primeng/api";
 import {AuthService} from "../../../services/auth.service";
 import {UserService} from "../../../services/user.service";
 import {UserResponse} from "../../../dtos/user-response";
+import {isNullOrUndefined} from "../../../util/utils";
+import {DomainDto} from "../../../dtos/domain-dto";
+import {DomainService} from "../../../services/domain.service";
+import {DomainUserReqDto} from "../../../dtos/domain-user-req";
 
 @Component({
   selector: 'app-user-profile',
@@ -13,7 +17,13 @@ import {UserResponse} from "../../../dtos/user-response";
 })
 export class UserProfileComponent implements OnInit {
 
+    protected readonly isNullOrUndefined = isNullOrUndefined;
+
     userData: UserResponse = {} as UserResponse;
+
+    allDomains: DomainDto[] = [];
+
+    selectedDomain: DomainDto = {} as DomainDto;
 
     constructor(private organisationService: OrganisationService,
                 private route: ActivatedRoute,
@@ -21,11 +31,13 @@ export class UserProfileComponent implements OnInit {
                 private confirmationService: ConfirmationService,
                 private messageService: MessageService,
                 private authService: AuthService,
-                private userService: UserService) {
+                private userService: UserService,
+                private domainService: DomainService) {
     }
 
     ngOnInit(): void {
         this.fetchUserData();
+        this.fetchAllDomains();
     }
 
     fetchUserData() {
@@ -35,6 +47,18 @@ export class UserProfileComponent implements OnInit {
                 },
                 error: (error: any) => {
                     this.messageService.add({severity: 'error', summary: 'Error', detail: 'Could not fetch user data'});
+                }
+            }
+        );
+    }
+
+    fetchAllDomains() {
+        this.domainService.getAllDomains().subscribe({
+                next: (response: DomainDto[]) => {
+                    this.allDomains = response;
+                },
+                error: (error: any) => {
+                    this.messageService.add({severity: 'error', summary: 'Error', detail: 'Could not fetch domains'});
                 }
             }
         );
@@ -58,5 +82,39 @@ export class UserProfileComponent implements OnInit {
 
     downloadCV() {
 
+    }
+
+    removeDomain(domain: DomainDto) {
+        const dto = new DomainUserReqDto(this.userData.email, domain.id);
+        this.confirmationService.confirm({
+            message: 'Are you sure you want to remove this domain?',
+            accept: () => {
+                this.domainService.removeUserFromDomain(dto).subscribe({
+                    next: (response: any) => {
+                        this.fetchUserData();
+                    },
+                    error: (error: any) => {
+                        this.messageService.add({severity: 'error', summary: 'Error', detail: 'Could not remove domain'});
+                    }
+                });
+            }
+        });
+    }
+
+    addDomain(event: any) {
+        const dto = new DomainUserReqDto(this.userData.email, this.selectedDomain.id);
+        this.domainService.addUserToDomain(dto).subscribe({
+            next: (response: any) => {
+                this.fetchUserData();
+            },
+            error: (error: any) => {
+                this.messageService.add({severity: 'error', summary: 'Error', detail: 'Could not add domain'});
+            }
+        });
+    }
+
+
+    filterOutDomains(allDomains: DomainDto[], userDomains: DomainDto[]) {
+        return allDomains.filter(domain => !userDomains.some(orgDomain => orgDomain.id === domain.id));
     }
 }

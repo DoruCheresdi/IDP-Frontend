@@ -13,6 +13,13 @@
             <div class="flex justify-content-center">
                 <p-rating [(ngModel)]="organisation.averageRating" [readonly]="true" [cancel]="false"></p-rating>
             </div>
+            <div class="card flex justify-content-center gap-2 mb-1 mt-1">
+                <p-tag
+                    *ngFor="let domain of organisation.domains"
+                    [value]="domain.name"
+                    (click)="removeDomain(domain)">
+                </p-tag>
+            </div>
             <div class="flex">
                 <p-button *ngIf="isOwner" class="m-2 block" (onClick)="goToEditOrganisation()">
                     Edit Organisation Info
@@ -37,7 +44,7 @@
                 <p-fileUpload
                     *ngIf="isOwner && !isNullOrUndefined(organisation.id)"
                     mode="basic"
-                    chooseLabel="Change Profile Picture"
+                    chooseLabel="Change Picture"
                     chooseIcon="pi pi-upload"
                     name="picture"
                     accept="image/*"
@@ -46,6 +53,16 @@
                     (onUpload)="afterChangePicture()"
                     class="m-2"
                     [auto]="true"/>
+                <p-dropdown *ngIf="isOwner && !isNullOrUndefined(organisation.id)"
+                            [options]="filterOutDomains(allDomains, organisation.domains)"
+                            [(ngModel)]="selectedDomain"
+                            (onChange)="addDomain($event)"
+                            optionLabel="name"
+                            optionValue=""
+                            [showClear]="true"
+                            placeholder="Add a domain"
+                            class="m-2">
+                </p-dropdown>
             </div>
             <p *ngIf="organisation.orgLink">
                 Link to website: <a [href]="organisation.orgLink">{{organisation.orgLink}}</a>

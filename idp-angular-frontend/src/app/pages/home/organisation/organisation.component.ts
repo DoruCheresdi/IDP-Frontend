@@ -5,6 +5,8 @@ import {ConfirmationService, MessageService} from "primeng/api";
 import {OrganisationResponse} from "../../../dtos/organisation-response";
 import {AuthService} from "../../../services/auth.service";
 import {isNullOrUndefined} from "../../../util/utils";
+import {DomainDto} from "../../../dtos/domain-dto";
+import {DomainService} from "../../../services/domain.service";
 
 @Component({
     selector: 'app-organisation',
@@ -12,6 +14,8 @@ import {isNullOrUndefined} from "../../../util/utils";
     styleUrls: ['./organisation.component.css']
 })
 export class OrganisationComponent implements OnInit {
+
+    protected readonly isNullOrUndefined = isNullOrUndefined;
 
     organisation: OrganisationResponse = {} as OrganisationResponse;
 
@@ -21,12 +25,17 @@ export class OrganisationComponent implements OnInit {
 
     hasFavoritedOrg: boolean = false;
 
+    allDomains: DomainDto[] = [];
+
+    selectedDomain: DomainDto = {} as DomainDto;
+
     constructor(private organisationService: OrganisationService,
                 private route: ActivatedRoute,
                 private router: Router,
                 private confirmationService: ConfirmationService,
                 private messageService: MessageService,
-                private authService: AuthService) {
+                private authService: AuthService,
+                private domainService: DomainService) {
     }
 
     ngOnInit(): void {
@@ -37,6 +46,7 @@ export class OrganisationComponent implements OnInit {
         }
         this.orgId = id;
         this.fetchOrganisation();
+        this.fetchAllDomains();
     }
 
     private fetchOrganisation() {
@@ -51,6 +61,17 @@ export class OrganisationComponent implements OnInit {
                 }
             }
         );
+    }
+
+    fetchAllDomains() {
+        this.domainService.getAllDomains().subscribe({
+            next: (response: DomainDto[]) => {
+                this.allDomains = response;
+            },
+            error: (error: any) => {
+                this.messageService.add({severity: 'error', summary: 'Error', detail: 'Could not fetch domains'});
+            }
+        });
     }
 
     private showCannotFindOrgError() {
@@ -126,5 +147,56 @@ export class OrganisationComponent implements OnInit {
         this.fetchOrganisation();
     }
 
-    protected readonly isNullOrUndefined = isNullOrUndefined;
+    removeDomain(domain: DomainDto) {
+        this.confirmationService.confirm({
+            message: 'Are you sure you want to remove this domain?',
+            accept: () => {
+                this.domainService.removeOrgFromDomain({
+                    domainId: domain.id,
+                    orgId: this.organisation.id
+                }).subscribe({
+                    next: () => {
+                        this.messageService.add({severity: 'success', summary: 'Success', detail: 'Domain removed successfully'});
+                        this.fetchOrganisation();
+                    },
+                    error: (error: any) => {
+                        this.messageService.add({severity: 'error', summary: 'Error', detail: 'Could not remove domain'});
+                    }
+                });
+            }
+        });
+    }
+
+    addDomain(event: any) {
+        if (this.isNullOrUndefined(this.selectedDomain.id)) {
+            this.messageService.add({severity: 'error', summary: 'Error', detail: 'Please select a domain'});
+            return;
+        }
+        this.confirmationService.confirm({
+            message: 'Are you sure you want to add this domain? : ' + this.selectedDomain.name,
+            accept: () => {
+                this.domainService.addOrgToDomain({
+                    domainId: this.selectedDomain.id,
+                    orgId: this.organisation.id
+                }).subscribe({
+                    next: () => {
+                        this.messageService.add({
+                            severity: 'success',
+                            summary: 'Success',
+                            detail: 'Domain added successfully'
+                        });
+                        this.fetchOrganisation();
+                        this.selectedDomain = {} as DomainDto;
+                    },
+                    error: (error: any) => {
+                        this.messageService.add({severity: 'error', summary: 'Error', detail: 'Could not add domain'});
+                    }
+                });
+            }
+        });
+    }
+
+    filterOutDomains(allDomains: DomainDto[], organisationDomains: DomainDto[]) {
+        return allDomains.filter(domain => !organisationDomains.some(orgDomain => orgDomain.id === domain.id));
+    }
 }

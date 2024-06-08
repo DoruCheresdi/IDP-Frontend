@@ -32,6 +32,25 @@
             <p>
                 Email: {{userData.email}}
             </p>
+            <h3>
+                Your domains of interest:
+            </h3>
+            <div class="card flex gap-2 mb-4">
+                <p-tag
+                    *ngFor="let domain of userData.domains"
+                    [value]="domain.name"
+                    (click)="removeDomain(domain)">
+                </p-tag>
+            </div>
+            <p-dropdown [options]="filterOutDomains(allDomains, userData.domains)"
+                        [(ngModel)]="selectedDomain"
+                        (onChange)="addDomain($event)"
+                        optionLabel="name"
+                        optionValue=""
+                        [showClear]="true"
+                        placeholder="Add a domain"
+                        class="m-2">
+            </p-dropdown>
         </div>
     </div>
 </div>
