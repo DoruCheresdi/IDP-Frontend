@@ -46,6 +46,9 @@ import { ReviewsForOrganisationComponent } from './pages/home/reviews-for-organi
 import { UserProfileComponent } from './pages/user/user-profile/user-profile.component';
 import {FileUploadModule} from "primeng/fileupload";
 import { EditUserDataComponent } from './pages/user/edit-user-data/edit-user-data.component';
+import { DomainsListComponent } from './pages/general/domains/domains-list/domains-list.component';
+import { AddDomainComponent } from './pages/general/domains/add-domain/add-domain.component';
+import {TagModule} from "primeng/tag";
 
 @NgModule({
     declarations: [
@@ -68,7 +71,9 @@ import { EditUserDataComponent } from './pages/user/edit-user-data/edit-user-dat
         OrganisationComponent,
         ReviewsForOrganisationComponent,
         UserProfileComponent,
-        EditUserDataComponent
+        EditUserDataComponent,
+        DomainsListComponent,
+        AddDomainComponent
     ],
     imports: [
         BrowserModule,
@@ -93,7 +98,8 @@ import { EditUserDataComponent } from './pages/user/edit-user-data/edit-user-dat
         ChipModule,
         DataViewModule,
         RatingModule,
-        FileUploadModule
+        FileUploadModule,
+        TagModule
     ],
     providers: [
         AuthService,

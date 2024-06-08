@@ -28,6 +28,8 @@ export class TopHeaderComponent {
 
     private PROFILE_LABEL = 'Profile';
 
+    private DOMAINS_LABEL = 'Domains';
+
     loginItem: MenuItem = {
         label: this.LOGIN_LABEL,
         icon: 'pi pi-fw pi-lock',
@@ -76,9 +78,16 @@ export class TopHeaderComponent {
         routerLink: '/user-profile'
     }
 
+    domainsItem: MenuItem = {
+        label: this.DOMAINS_LABEL,
+        icon: 'pi pi-fw pi-list',
+        routerLink: '/domains'
+    }
+
     adminItems: MenuItem[] = [
         this.orgListItem,
-        this.reviewListItem
+        this.reviewListItem,
+        this.domainsItem
     ];
 
     loggedInItems: MenuItem[] = [

@@ -1,0 +1,17 @@
+<p-card header="Add Activity Domains" styleClass="user-form" class="flex justify-content-center mt-8">
+    <h3>
+        Current activity domains added:
+    </h3>
+    <div class="card flex gap-2 mb-4">
+        <p-tag
+            *ngFor="let domain of domains"
+            [value]="domain.name"
+            class="large-tag">
+        </p-tag>
+    </div>
+    <div class="field">
+        <label for="add-domain" class="block">Add another activity domain:</label>
+        <input id="add-domain" type="text" pInputText placeholder="Domain name" [(ngModel)]="newDomainName" class="w-full"/>
+    </div>
+    <p-button label="Add Domain" (click)="addDomain()"></p-button>
+</p-card>
