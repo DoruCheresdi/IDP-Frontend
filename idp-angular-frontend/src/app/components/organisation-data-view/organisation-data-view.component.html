@@ -1,5 +1,13 @@
 <p-card [header]="header">
-    <p-dataView #dv [value]="organisations" [rows]="5" [paginator]="true">
+    <p-dataView #dv [value]="sortedOrganisations" [rows]="5" [paginator]="true">
+        <ng-template pTemplate="header">
+            <div class="flex flex-column md:flex-row md:justify-content-between">
+                <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By Price"
+                            (onChange)="onSortChange($event)" styleClass="mb-2 md:mb-0">
+                </p-dropdown>
+                <input type="text" pInputText placeholder="Search by name" (input)="filterByName($event)">
+            </div>
+        </ng-template>
         <ng-template let-organisation pTemplate="listItem">
             <div class="col-12">
                 <div class="flex flex-column xl:flex-row xl:align-items-start p-3 gap-4">
