@@ -24,7 +24,7 @@ export class HomePageComponent implements OnInit {
     }
 
     fetchOrganisations(): void {
-        this.organisationService.getOrganisationsAll().subscribe({
+        this.organisationService.getOrganisationsAllOrdered().subscribe({
                 next: (response: OrganisationResponse[]) => {
                     this.organisations = response;
                 },

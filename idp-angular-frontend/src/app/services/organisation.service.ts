@@ -18,6 +18,8 @@ export class OrganisationService {
 
     public getOrganisationsAllPath = 'organisation/all';
 
+    public getOrganisationsAllOrderedPath = 'organisation/all-ordered';
+
     public addOrganisationPath = 'organisation';
 
     public getOrganisationPath = 'organisation';
@@ -58,6 +60,10 @@ export class OrganisationService {
 
     getOrganisationsAll(): Observable<OrganisationResponse[]> {
         return this.http.get<OrganisationResponse[]>(this.urlService.getUrl(this.getOrganisationsAllPath));
+    }
+
+    getOrganisationsAllOrdered(): Observable<OrganisationResponse[]> {
+        return this.http.get<OrganisationResponse[]>(this.urlService.getUrl(this.getOrganisationsAllOrderedPath));
     }
 
     addOrganisation(organisation: OrganisationAddRequest): Observable<OrganisationResponse> {
