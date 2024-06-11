@@ -49,6 +49,9 @@ import { EditUserDataComponent } from './pages/user/edit-user-data/edit-user-dat
 import { DomainsListComponent } from './pages/general/domains/domains-list/domains-list.component';
 import { AddDomainComponent } from './pages/general/domains/add-domain/add-domain.component';
 import {TagModule} from "primeng/tag";
+import { BenefitsListComponent } from './pages/home/benefits-list/benefits-list.component';
+import { AddBenefitComponent } from './pages/home/benefits-list/add-benefit/add-benefit.component';
+import {InputNumberModule} from "primeng/inputnumber";
 
 @NgModule({
     declarations: [
@@ -73,7 +76,9 @@ import {TagModule} from "primeng/tag";
         UserProfileComponent,
         EditUserDataComponent,
         DomainsListComponent,
-        AddDomainComponent
+        AddDomainComponent,
+        BenefitsListComponent,
+        AddBenefitComponent
     ],
     imports: [
         BrowserModule,
@@ -99,7 +104,8 @@ import {TagModule} from "primeng/tag";
         DataViewModule,
         RatingModule,
         FileUploadModule,
-        TagModule
+        TagModule,
+        InputNumberModule
     ],
     providers: [
         AuthService,

@@ -1,0 +1,38 @@
+<p-button icon="pi pi-plus" *ngIf="!showForm" (click)="showFormFields()"></p-button>
+<div class="w-4" *ngIf="showForm">
+    <form [formGroup]="addBenefitForm" (ngSubmit)="addBenefit()" novalidate>
+        <div class="field">
+            <label for="name" class="block">Name</label>
+            <input id="name" type="text" pInputText placeholder="Name" formControlName="name"
+                   class="w-full"/>
+            <small class="p-error block" *ngIf="addBenefitForm.get('name')?.invalid && addBenefitForm.get('name')?.dirty">
+                Name is required</small>
+        </div>
+
+        <div class="field">
+            <label for="subunitaryDescription" class="block">Subunitary Description</label>
+            <textarea id="subunitaryDescription" type="text" pInputTextarea placeholder="Subunitary Description" formControlName="subunitaryDescription"
+                   class="w-full" rows="5" cols="50"></textarea>
+            <small class="p-error block" *ngIf="addBenefitForm.get('subunitaryDescription')?.invalid && addBenefitForm.get('subunitaryDescription')?.dirty">
+                Description is required</small>
+        </div>
+
+        <div class="field">
+            <label for="superunitaryDescription" class="block">Superunitary Description</label>
+            <textarea id="superunitaryDescription" type="text" pInputTextarea placeholder="Superunitary Description" formControlName="superunitaryDescription"
+                      class="w-full" rows="5" cols="50"></textarea>
+            <small class="p-error block" *ngIf="addBenefitForm.get('superunitaryDescription')?.invalid && addBenefitForm.get('superunitaryDescription')?.dirty">
+                Description is required</small>
+        </div>
+
+        <div class="field">
+            <label for="priceInLei" class="block">Price in Lei</label>
+            <p-inputNumber id="priceInLei" placeholder="Price in Lei" formControlName="priceInLei" mode="decimal"/>
+            <small class="p-error block" *ngIf="addBenefitForm.get('priceInLei')?.invalid && addBenefitForm.get('priceInLei')?.dirty">
+                Name is required</small>
+        </div>
+
+
+        <button pButton type="submit" label="Add Benefit"></button>
+    </form>
+</div>

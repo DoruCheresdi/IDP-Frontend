@@ -199,4 +199,8 @@ export class OrganisationComponent implements OnInit {
     filterOutDomains(allDomains: DomainDto[], organisationDomains: DomainDto[]) {
         return allDomains.filter(domain => !organisationDomains.some(orgDomain => orgDomain.id === domain.id));
     }
+
+    goToBenefits() {
+        this.router.navigateByUrl('/benefits', {state: {data: this.organisation}});
+    }
 }

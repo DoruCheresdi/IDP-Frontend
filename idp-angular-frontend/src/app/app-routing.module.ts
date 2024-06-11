@@ -23,6 +23,7 @@ import {OrganisationComponent} from "./pages/home/organisation/organisation.comp
 import {UserProfileComponent} from "./pages/user/user-profile/user-profile.component";
 import {EditUserDataComponent} from "./pages/user/edit-user-data/edit-user-data.component";
 import {DomainsListComponent} from "./pages/general/domains/domains-list/domains-list.component";
+import {BenefitsListComponent} from "./pages/home/benefits-list/benefits-list.component";
 
 // const routes: Routes = [{ path: '', component: HomeComponent, pathMatch: 'full' },
 //   {onSameUrlNavigation: 'reload'}];
@@ -45,6 +46,7 @@ import {DomainsListComponent} from "./pages/general/domains/domains-list/domains
             { path: 'user-profile', component: UserProfileComponent, canActivate: [isAuthenticatedGuard]},
             { path: 'user-edit', component: EditUserDataComponent, canActivate: [isAuthenticatedGuard]},
             { path: 'domains', component: DomainsListComponent, canActivate: [isAdminGuard]},
+            { path: 'benefits', component: BenefitsListComponent, canActivate: [isAuthenticatedGuard]},
         ],
         {onSameUrlNavigation: 'reload'})],
     exports: [RouterModule]

@@ -1,0 +1,24 @@
+<div class="flex justify-content-center">
+    <p-card class="m-1 w-10">
+        <h1>
+            Benefits for {{organisation.name}}
+        </h1>
+        <div *ngFor="let benefit of benefits">
+            <p-card class="m-1">
+                <h2>
+                    {{benefit.name}}
+                </h2>
+                <p>
+                    Price: {{benefit.priceInLei}}
+                </p>
+                <p>
+                    <p-button class="m-2 block" (onClick)="deleteBenefit(benefit)" severity="danger">
+                        <i class="pi pi-times mr-2"></i>
+                        Delete Benefit
+                    </p-button>
+                </p>
+            </p-card>
+        </div>
+        <app-add-benefit [organisationId]="organisation.id" (addedBenefitEvent)="fetchBenefits()"></app-add-benefit>
+    </p-card>
+</div>

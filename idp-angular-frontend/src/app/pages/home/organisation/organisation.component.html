@@ -23,7 +23,7 @@
             </div>
             <div class="flex">
                 <p-button *ngIf="isOwner" class="m-2 block" (onClick)="goToEditOrganisation()">
-                    Edit Organisation Info
+                    Edit Organisation
                     <i class="pi pi-arrow-right ml-2"></i>
                 </p-button>
                 <p-button *ngIf="!hasFavoritedOrg" class="m-2 block" (onClick)="addOrgToFavorites()" severity="warning">
@@ -33,6 +33,10 @@
                 <p-button *ngIf="hasFavoritedOrg" class="m-2 block" (onClick)="removeOrgFromFavorites()" severity="danger">
                     <i class="pi pi-times mr-2"></i>
                     Remove from favorites
+                </p-button>
+                <p-button *ngIf="isOwner" class="m-2 block" (onClick)="goToBenefits()" severity="info">
+                    <i class="pi pi-arrow-right mr-2"></i>
+                    Manage benefits
                 </p-button>
 <!--                <label for="fileUploadProfilePic">-->
 <!--                    <p-button *ngIf="isOwner" class="m-2 block">-->
