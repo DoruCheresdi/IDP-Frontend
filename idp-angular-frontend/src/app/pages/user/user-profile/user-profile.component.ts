@@ -131,4 +131,8 @@ export class UserProfileComponent implements OnInit {
     getCVLink() {
         return this.userService.getCVLink(this.userData.id, this.userData.cvPath);
     }
+
+    getTaxRedirectionFormLink() {
+        return this.userService.getTaxRedirectionFormLink();
+    }
 }

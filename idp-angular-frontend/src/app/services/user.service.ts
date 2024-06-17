@@ -52,4 +52,8 @@ export class UserService {
     getCVLink(userId: string, cv: string): string {
         return this.urlService.getUrl('assets/cv/'+ userId + '/' + cv);
     }
+
+    getTaxRedirectionFormLink(): string {
+        return this.urlService.getUrl('assets/230_OPANAF_15_2021.pdf');
+    }
 }
