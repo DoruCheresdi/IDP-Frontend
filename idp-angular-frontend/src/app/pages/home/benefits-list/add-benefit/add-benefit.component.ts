@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {OrganisationService} from "../../../../services/organisation.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ConfirmationService, MessageService} from "primeng/api";
@@ -13,13 +13,16 @@ import {BenefitDto} from "../../../../dtos/benefit-dto";
   templateUrl: './add-benefit.component.html',
   styleUrls: ['./add-benefit.component.css']
 })
-export class AddBenefitComponent implements OnInit {
+export class AddBenefitComponent implements OnInit, OnChanges {
 
     @Input()
     organisationId = '0';
 
     @Output()
     addedBenefitEvent = new EventEmitter<any>();
+
+    @Input()
+    donation: number = 0;
 
     addBenefitForm = this.fb.group({
         name: ['', Validators.required],
@@ -29,6 +32,8 @@ export class AddBenefitComponent implements OnInit {
     });
 
     showForm = false;
+
+    donationMessage = this.getDonationMessage();
 
     constructor(private organisationService: OrganisationService,
                 private route: ActivatedRoute,
@@ -41,6 +46,13 @@ export class AddBenefitComponent implements OnInit {
                 private benefitService: BenefitService) { }
 
     ngOnInit(): void {
+        this.addBenefitForm.valueChanges.subscribe(() => {
+            this.donationMessage = this.getDonationMessage();
+        });
+    }
+
+    ngOnChanges(): void {
+        this.donationMessage = this.getDonationMessage();
     }
 
     showFormFields() {
@@ -71,5 +83,17 @@ export class AddBenefitComponent implements OnInit {
                 this.messageService.add({severity: 'error', summary: 'Error', detail: 'Failed to add benefit'});
             }
         });
+    }
+
+    getDonationMessage(): string {
+
+        const benefit = new BenefitDto('0',
+            this.addBenefitForm.value.name ? this.addBenefitForm.value.name : '',
+            this.addBenefitForm.value.subunitaryDescription ? this.addBenefitForm.value.subunitaryDescription : '',
+            '0',
+            this.addBenefitForm.value.superunitaryDescription ? this.addBenefitForm.value.superunitaryDescription : '',
+            this.addBenefitForm.value.priceInLei ? this.addBenefitForm.value.priceInLei : 0);
+
+        return this.benefitService.getBenefitMessage(benefit, this.donation);
     }
 }

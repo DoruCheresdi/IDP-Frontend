@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit} from '@angular/core';
 import {OrganisationResponse} from "../../../dtos/organisation-response";
 import {OrganisationService} from "../../../services/organisation.service";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -19,6 +19,8 @@ export class BenefitsListComponent implements OnInit {
 
     benefits: BenefitDto[] = [];
 
+    donation: number = 0;
+
     constructor(private organisationService: OrganisationService,
                 private route: ActivatedRoute,
                 private router: Router,
@@ -26,7 +28,7 @@ export class BenefitsListComponent implements OnInit {
                 private messageService: MessageService,
                 private authService: AuthService,
                 private domainService: DomainService,
-                private benefitService: BenefitService) {
+                public benefitService: BenefitService) {
         // this works only in constructor:
         this.mapOrganisationFromRouteData();
     }

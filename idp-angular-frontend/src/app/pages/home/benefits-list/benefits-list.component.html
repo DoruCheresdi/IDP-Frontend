@@ -3,8 +3,10 @@
         <h1>
             Benefits for {{organisation.name}}
         </h1>
+        <label for="donation" class="block">Sample donation</label>
+        <p-inputNumber [(ngModel)]="donation" inputId="donation" mode="decimal" class="m-1"></p-inputNumber>
         <div *ngFor="let benefit of benefits">
-            <p-card class="m-1">
+            <div class="mb-2 mt-2 shadow-2 p-2">
                 <h2>
                     {{benefit.name}}
                 </h2>
@@ -12,13 +14,17 @@
                     Price: {{benefit.priceInLei}}
                 </p>
                 <p>
+                    Message: {{benefitService.getBenefitMessage(benefit, donation)}}
+                </p>
+                <p>
                     <p-button class="m-2 block" (onClick)="deleteBenefit(benefit)" severity="danger">
                         <i class="pi pi-times mr-2"></i>
                         Delete Benefit
                     </p-button>
                 </p>
-            </p-card>
+            </div>
         </div>
-        <app-add-benefit [organisationId]="organisation.id" (addedBenefitEvent)="fetchBenefits()"></app-add-benefit>
+        <app-add-benefit [organisationId]="organisation.id" (addedBenefitEvent)="fetchBenefits()"
+        [donation]="donation"></app-add-benefit>
     </p-card>
 </div>

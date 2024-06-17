@@ -34,4 +34,20 @@ export class BenefitService {
     getAllBenefitsByOrg(orgId: string) {
         return this.http.get(this.urlService.getUrl(this.getAllBenefitsByOrgPath) + '/' + orgId);
     }
+
+    getBenefitMessage(benefit: BenefitDto, donation: number): string {
+        if (donation > benefit.priceInLei) {
+            let qty = 0;
+            if (benefit.priceInLei !== 0) {
+                qty = donation / benefit.priceInLei;
+            }
+            return "Your donation will pay for " + (qty).toFixed(2) + " " + benefit.superunitaryDescription;
+        } else {
+            let fraction = 0;
+            if (benefit.priceInLei !== 0) {
+                fraction = donation / benefit.priceInLei;
+            }
+            return "Your donation will pay for " + (fraction).toFixed(2) + "% " + benefit.subunitaryDescription;
+        }
+    }
 }
