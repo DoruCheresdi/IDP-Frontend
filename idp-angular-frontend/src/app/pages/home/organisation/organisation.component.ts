@@ -7,6 +7,7 @@ import {AuthService} from "../../../services/auth.service";
 import {isNullOrUndefined} from "../../../util/utils";
 import {DomainDto} from "../../../dtos/domain-dto";
 import {DomainService} from "../../../services/domain.service";
+import {BenefitService} from "../../../services/benefit.service";
 
 @Component({
     selector: 'app-organisation',
@@ -29,13 +30,16 @@ export class OrganisationComponent implements OnInit {
 
     selectedDomain: DomainDto = {} as DomainDto;
 
+    donation = 0;
+
     constructor(private organisationService: OrganisationService,
                 private route: ActivatedRoute,
                 private router: Router,
                 private confirmationService: ConfirmationService,
                 private messageService: MessageService,
                 private authService: AuthService,
-                private domainService: DomainService) {
+                private domainService: DomainService,
+                public benefitService: BenefitService) {
     }
 
     ngOnInit(): void {

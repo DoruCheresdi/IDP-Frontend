@@ -45,7 +45,7 @@ export class BenefitService {
         } else {
             let fraction = 0;
             if (benefit.priceInLei !== 0) {
-                fraction = donation / benefit.priceInLei;
+                fraction = donation * 100 / benefit.priceInLei;
             }
             return "Your donation will pay for " + (fraction).toFixed(2) + "% " + benefit.subunitaryDescription;
         }

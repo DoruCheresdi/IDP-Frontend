@@ -81,6 +81,18 @@
             <p *ngIf="organisation.iban">
                 Bank Account IBAN: {{organisation.iban}}
             </p>
+            <label for="donation" class="block">Check the impact of a donation!</label>
+            <p-inputNumber [(ngModel)]="donation" inputId="donation" mode="decimal" class="m-1"></p-inputNumber>
+            <div *ngIf="donation > 0">
+                <div *ngFor="let benefit of organisation.benefits">
+                    <div class="mb-2 mt-2 shadow-2 p-2">
+                        <p>
+                            <i class="pi pi-check-circle mr-2"></i>
+                            {{benefitService.getBenefitMessage(benefit, donation)}}
+                        </p>
+                    </div>
+                </div>
+            </div>
             <app-reviews-for-organisation *ngIf="organisation.id" [organisation]="organisation">
             </app-reviews-for-organisation>
         </div>
