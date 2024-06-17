@@ -14,6 +14,8 @@ export class VolunteerService {
 
     public addEventPath = 'event';
 
+    public addEventRequestPath = 'event/add-request';
+
     constructor(private http: HttpClient,
                 private urlService: UrlService) { }
 
@@ -27,5 +29,9 @@ export class VolunteerService {
 
     addEvent(event: VolEventDto) {
         return this.http.post<any>(this.urlService.getUrl(this.addEventPath), event);
+    }
+
+    addEventRequest(eventId: string) {
+        return this.http.post<any>(this.urlService.getUrl(this.addEventRequestPath), eventId);
     }
 }

@@ -55,6 +55,8 @@ import {InputNumberModule} from "primeng/inputnumber";
 import { EventsListComponent } from './pages/home/events-list/events-list.component';
 import { AddEventComponent } from './pages/home/events-list/add-event/add-event.component';
 import {CalendarModule} from "primeng/calendar";
+import { EventRequestsListComponent } from './pages/home/events-list/event-requests-list/event-requests-list.component';
+import {DialogModule} from "primeng/dialog";
 
 @NgModule({
     declarations: [
@@ -83,7 +85,8 @@ import {CalendarModule} from "primeng/calendar";
         BenefitsListComponent,
         AddBenefitComponent,
         EventsListComponent,
-        AddEventComponent
+        AddEventComponent,
+        EventRequestsListComponent
     ],
     imports: [
         BrowserModule,
@@ -111,7 +114,8 @@ import {CalendarModule} from "primeng/calendar";
         FileUploadModule,
         TagModule,
         InputNumberModule,
-        CalendarModule
+        CalendarModule,
+        DialogModule
     ],
     providers: [
         AuthService,

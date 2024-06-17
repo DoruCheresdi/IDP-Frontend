@@ -80,4 +80,24 @@ export class EventsListComponent implements OnInit {
     getEventDateString(event: VolEventDto): string {
         return new Date(event.date).toLocaleDateString();
     }
+
+    showMakeRequestButton(event: VolEventDto): boolean {
+        return !this.isOwner && !this.hasUserRequested(event);
+    }
+
+    hasUserRequested(event: VolEventDto): boolean {
+        return event.requests.some(req => req.volunteer.email === this.authService.getOwnerEmail());
+    }
+
+    makeJoinRequestForEvent(event: VolEventDto) {
+        this.volunteerService.addEventRequest(event.id).subscribe({
+            next: () => {
+                this.messageService.add({severity: 'success', summary: 'Success', detail: 'Request sent successfully'});
+                this.fetchEvents();
+            },
+            error: () => {
+                this.messageService.add({severity: 'error', summary: 'Error', detail: 'Failed to send request'});
+            }
+        });
+    }
 }

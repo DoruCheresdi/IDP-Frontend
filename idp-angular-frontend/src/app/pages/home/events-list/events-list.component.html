@@ -20,9 +20,19 @@
                     <i class="pi pi-times mr-2"></i>
                     Delete Event
                 </p-button>
+                <app-event-requests-list *ngIf="isOwner"
+                                         [event]="event"
+                                         class="m-2 block">
+                </app-event-requests-list>
+                <p-button
+                    *ngIf="showMakeRequestButton(event)"
+                    class="m-2 block" (onClick)="makeJoinRequestForEvent(event)" severity="info">
+                    <i class="pi pi-times mr-2"></i>
+                    Make a participation request
+                </p-button>
             </div>
         </div>
         <app-add-event *ngIf="isOwner"
-            [organisationId]="organisation.id" (addedEvent)="fetchEvents()"></app-add-event>
+                       [organisationId]="organisation.id" (addedEvent)="fetchEvents()"></app-add-event>
     </p-card>
 </div>

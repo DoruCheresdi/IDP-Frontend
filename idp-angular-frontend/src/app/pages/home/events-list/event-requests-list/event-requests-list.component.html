@@ -1,0 +1,21 @@
+<p-button (click)="showDialog()" icon="pi pi-external-link" label="Show Request List"></p-button>
+<p-dialog header="Participation Requests for {{event.name}}"
+          [(visible)]="visible" [modal]="true"
+          [style]="{ width: '50vw' }"
+          [draggable]="false"
+          [resizable]="false">
+    <div>
+        <div *ngFor="let request of event.requests">
+            <div class="flex flex-column">
+                <img *ngIf="request.volunteer.profilePicture"
+                     class="w-2 h-2 shadow-2 block mx-auto border-round mt-5"
+                     [src]="getProfilePictureLink(request.volunteer)"
+                     [alt]="'No Profile Picture'" />
+                <h1 class="text-center">{{request.volunteer.firstname + ' ' + request.volunteer.lastname}}</h1>
+            </div>
+        </div>
+        <p *ngIf="event.requests.length === 0">
+            There are currently no participation requests for this event.
+        </p>
+    </div>
+</p-dialog>
