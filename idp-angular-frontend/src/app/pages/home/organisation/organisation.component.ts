@@ -207,4 +207,8 @@ export class OrganisationComponent implements OnInit {
     goToBenefits() {
         this.router.navigateByUrl('/benefits', {state: {data: this.organisation}});
     }
+
+    goToEvents() {
+        this.router.navigateByUrl('/events', {state: {data: this.organisation}});
+    }
 }

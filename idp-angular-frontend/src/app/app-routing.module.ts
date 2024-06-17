@@ -24,6 +24,7 @@ import {UserProfileComponent} from "./pages/user/user-profile/user-profile.compo
 import {EditUserDataComponent} from "./pages/user/edit-user-data/edit-user-data.component";
 import {DomainsListComponent} from "./pages/general/domains/domains-list/domains-list.component";
 import {BenefitsListComponent} from "./pages/home/benefits-list/benefits-list.component";
+import {EventsListComponent} from "./pages/home/events-list/events-list.component";
 
 // const routes: Routes = [{ path: '', component: HomeComponent, pathMatch: 'full' },
 //   {onSameUrlNavigation: 'reload'}];
@@ -47,6 +48,7 @@ import {BenefitsListComponent} from "./pages/home/benefits-list/benefits-list.co
             { path: 'user-edit', component: EditUserDataComponent, canActivate: [isAuthenticatedGuard]},
             { path: 'domains', component: DomainsListComponent, canActivate: [isAdminGuard]},
             { path: 'benefits', component: BenefitsListComponent, canActivate: [isAuthenticatedGuard]},
+            { path: 'events', component: EventsListComponent, canActivate: [isAuthenticatedGuard]},
         ],
         {onSameUrlNavigation: 'reload'})],
     exports: [RouterModule]

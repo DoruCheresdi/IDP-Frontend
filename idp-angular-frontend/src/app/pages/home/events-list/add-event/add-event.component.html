@@ -1,0 +1,44 @@
+<p-button icon="pi pi-plus" *ngIf="!showForm" (click)="showFormFields()"></p-button>
+<div class="w-4 shadow-2 p-2" *ngIf="showForm">
+    <h1>Add another event</h1>
+    <form [formGroup]="addEventForm" (ngSubmit)="addEvent()" novalidate>
+        <div class="field">
+            <label for="name" class="block">Name</label>
+            <input id="name" type="text" pInputText placeholder="Name" formControlName="name"
+                   class="w-full"/>
+            <small class="p-error block" *ngIf="addEventForm.get('name')?.invalid && addEventForm.get('name')?.dirty">
+                Name is required</small>
+        </div>
+
+        <div class="field">
+            <label for="description" class="block">Description</label>
+            <textarea id="description" type="text" pInputTextarea placeholder="Description" formControlName="description"
+                      class="w-full" rows="5" cols="50"></textarea>
+            <small class="p-error block" *ngIf="addEventForm.get('description')?.invalid && addEventForm.get('description')?.dirty">
+                Description is required</small>
+        </div>
+        <div class="field">
+            <label for="location" class="block">Location</label>
+            <input id="location" type="text" pInputText placeholder="Location" formControlName="location"
+                   class="w-full"/>
+            <small class="p-error block" *ngIf="addEventForm.get('location')?.invalid && addEventForm.get('location')?.dirty">
+                Location is required</small>
+        </div>
+        <div class="field">
+            <label for="hours" class="block">Hours</label>
+            <input id="hours" type="text" pInputText placeholder="Hours" formControlName="hours"
+                   class="w-full"/>
+            <small class="p-error block" *ngIf="addEventForm.get('hours')?.invalid && addEventForm.get('hours')?.dirty">
+                Hours is required</small>
+        </div>
+
+        <div class="field">
+            <label for="date" class="block">Date</label>
+            <p-calendar id="date" placeholder="Date" formControlName="date" [showIcon]="true"></p-calendar>
+            <small class="p-error block" *ngIf="addEventForm.get('date')?.invalid && addEventForm.get('date')?.dirty">
+                Date is required</small>
+        </div>
+
+        <button pButton type="submit" label="Add Event"></button>
+    </form>
+</div>

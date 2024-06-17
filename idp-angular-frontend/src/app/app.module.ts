@@ -52,6 +52,9 @@ import {TagModule} from "primeng/tag";
 import { BenefitsListComponent } from './pages/home/benefits-list/benefits-list.component';
 import { AddBenefitComponent } from './pages/home/benefits-list/add-benefit/add-benefit.component';
 import {InputNumberModule} from "primeng/inputnumber";
+import { EventsListComponent } from './pages/home/events-list/events-list.component';
+import { AddEventComponent } from './pages/home/events-list/add-event/add-event.component';
+import {CalendarModule} from "primeng/calendar";
 
 @NgModule({
     declarations: [
@@ -78,7 +81,9 @@ import {InputNumberModule} from "primeng/inputnumber";
         DomainsListComponent,
         AddDomainComponent,
         BenefitsListComponent,
-        AddBenefitComponent
+        AddBenefitComponent,
+        EventsListComponent,
+        AddEventComponent
     ],
     imports: [
         BrowserModule,
@@ -105,7 +110,8 @@ import {InputNumberModule} from "primeng/inputnumber";
         RatingModule,
         FileUploadModule,
         TagModule,
-        InputNumberModule
+        InputNumberModule,
+        CalendarModule
     ],
     providers: [
         AuthService,
