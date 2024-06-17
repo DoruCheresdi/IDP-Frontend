@@ -27,9 +27,15 @@
                 <p-button
                     *ngIf="showMakeRequestButton(event)"
                     class="m-2 block" (onClick)="makeJoinRequestForEvent(event)" severity="info">
-                    <i class="pi pi-times mr-2"></i>
+                    <i class="pi pi-plus mr-2"></i>
                     Make a participation request
                 </p-button>
+                <p *ngIf="userIsRejected(event)">
+                    Your request has been rejected for this event.
+                </p>
+                <p *ngIf="userIsAccepted(event)">
+                    You are have been accepted and are participating to this event!
+                </p>
             </div>
         </div>
         <app-add-event *ngIf="isOwner"

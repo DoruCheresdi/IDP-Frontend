@@ -6,6 +6,7 @@ import {ConfirmationService, MessageService} from "primeng/api";
 import {VolEventDto} from "../../../dtos/volEventDto";
 import {VolunteerService} from "../../../services/volunteer.service";
 import {AuthService} from "../../../services/auth.service";
+import {ReqStatus} from "../../../dtos/volEventReqDto";
 
 @Component({
     selector: 'app-events-list',
@@ -99,5 +100,13 @@ export class EventsListComponent implements OnInit {
                 this.messageService.add({severity: 'error', summary: 'Error', detail: 'Failed to send request'});
             }
         });
+    }
+
+    userIsRejected(event: VolEventDto): boolean {
+        return event.requests.some(req => req.volunteer.email === this.authService.getOwnerEmail() && req.status === ReqStatus.REJECTED);
+    }
+
+    userIsAccepted(event: VolEventDto): boolean {
+        return event.requests.some(req => req.volunteer.email === this.authService.getOwnerEmail() && req.status === ReqStatus.ACCEPTED);
     }
 }

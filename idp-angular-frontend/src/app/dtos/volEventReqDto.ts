@@ -1,5 +1,11 @@
 import {UserResponse} from "./user-response";
 
+export enum ReqStatus {
+    PENDING = 'PENDING',
+    ACCEPTED = 'ACCEPTED',
+    REJECTED = 'REJECTED'
+}
+
 export class VolEventReqDto {
     id: string;
     userId: string;

@@ -64,6 +64,7 @@ export class AddEventComponent implements OnInit {
         this.volunteerService.addEvent(event).subscribe({
             next: (response: any) => {
                 this.addedEvent.emit();
+                this.showForm = false;
                 this.messageService.add({severity: 'success', summary: 'Success', detail: 'Event added'});
             },
             error: (error: any) => {
