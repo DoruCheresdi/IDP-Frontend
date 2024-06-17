@@ -17,6 +17,10 @@ export class UserService {
 
     public userEditPath = 'user/edit';
 
+    public uploadPicturePath = 'user/upload-profile-picture';
+
+    public uploadCVPath = 'user/upload-cv';
+
     constructor(private http: HttpClient,
                 private urlService: UrlService) { }
 
@@ -33,4 +37,19 @@ export class UserService {
         return this.http.put<any>(this.urlService.getUrl(this.userEditPath), request);
     }
 
+    getUploadPictureUrl(): string {
+        return this.urlService.getUrl(this.uploadPicturePath);
+    }
+
+    getProfilePictureLink(userId: string, profilePicture: string): string {
+        return this.urlService.getUrl('assets/user-photos/'+ userId + '/' + profilePicture);
+    }
+
+    getUploadCVUrl(): string {
+        return this.urlService.getUrl(this.uploadCVPath);
+    }
+
+    getCVLink(userId: string, cv: string): string {
+        return this.urlService.getUrl('assets/cv/'+ userId + '/' + cv);
+    }
 }

@@ -1,6 +1,7 @@
 import {DomainDto} from "./domain-dto";
 
 export class UserResponse {
+    id: string;
     firstname: string;
     lastname: string;
     email: string;
@@ -8,8 +9,9 @@ export class UserResponse {
     cvPath: string;
     domains: DomainDto[];
 
-    constructor(firstname: string, lastname: string, email: string, profilePicture: string,
+    constructor(id: string, firstname: string, lastname: string, email: string, profilePicture: string,
                 cvPath: string, domains: DomainDto[]) {
+        this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;

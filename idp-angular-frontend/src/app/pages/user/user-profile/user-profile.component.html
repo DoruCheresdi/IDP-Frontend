@@ -1,8 +1,9 @@
 <div class="flex justify-content-center">
     <div class="block w-8 bg-white mt-5">
         <div class="m-4">
-            <img class="w-9 w-22rem shadow-2 block xl:block mx-auto border-round mt-5"
-                 [src]="'https://primefaces.org/cdn/primeng/images/demo/product/bamboo-watch.jpg'"
+            <img *ngIf="userData.profilePicture"
+                class="w-2 h-2 shadow-2 block mx-auto border-round mt-5"
+                 [src]="getProfilePictureLink()"
                  [alt]="'No Profile Picture'" />
             <h1 class="text-center">{{userData.firstname + ' ' + userData.lastname}}</h1>
             <div class="flex">
@@ -13,14 +14,31 @@
                 <p-button class="m-2 block" (onClick)="goToChangePassword()">
                     Change password
                 </p-button>
-                <p-button class="m-2 block" (onClick)="changeProfilePicture()">
-                    Change profile picture
-                </p-button>
-                <p-button class="m-2 block" (onClick)="uploadCV()">
-                    Upload CV
-                </p-button>
-                <p-button class="m-2 block" (onClick)="downloadCV()">
-                    Download CV
+                <p-fileUpload
+                    mode="basic"
+                    chooseLabel="Change profile picture"
+                    chooseIcon="pi pi-upload"
+                    name="picture"
+                    accept="image/*"
+                    [maxFileSize]="1000000"
+                    [url]="getUploadPictureUrl()"
+                    (onUpload)="afterChangePicture()"
+                    class="m-2"
+                    [auto]="true"/>
+                <p-fileUpload
+                    mode="basic"
+                    chooseLabel="Upload CV"
+                    chooseIcon="pi pi-upload"
+                    name="cv"
+                    accept="application/pdf"
+                    [maxFileSize]="1000000"
+                    [url]="getUploadCVUrl()"
+                    (onUpload)="afterChangeCV()"
+                    class="m-2"
+                    [auto]="true"/>
+                <p-button *ngIf="userData.cvPath"
+                    class="m-2 block">
+                    <a [href]="getCVLink()" download="file.txt">Download CV</a>
                 </p-button>
             </div>
             <p>

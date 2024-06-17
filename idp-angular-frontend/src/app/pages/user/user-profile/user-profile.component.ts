@@ -72,18 +72,6 @@ export class UserProfileComponent implements OnInit {
 
     }
 
-    changeProfilePicture() {
-
-    }
-
-    uploadCV() {
-
-    }
-
-    downloadCV() {
-
-    }
-
     removeDomain(domain: DomainDto) {
         const dto = new DomainUserReqDto(this.userData.email, domain.id);
         this.confirmationService.confirm({
@@ -116,5 +104,31 @@ export class UserProfileComponent implements OnInit {
 
     filterOutDomains(allDomains: DomainDto[], userDomains: DomainDto[]) {
         return allDomains.filter(domain => !userDomains.some(orgDomain => orgDomain.id === domain.id));
+    }
+
+    getUploadPictureUrl() {
+        return this.userService.getUploadPictureUrl();
+    }
+
+    afterChangePicture() {
+        this.messageService.add({severity: 'success', summary: 'Success', detail: 'Profile picture changed'});
+        this.fetchUserData();
+    }
+
+    getProfilePictureLink() {
+        return this.userService.getProfilePictureLink(this.userData.id, this.userData.profilePicture);
+    }
+
+    getUploadCVUrl() {
+        return this.userService.getUploadCVUrl();
+    }
+
+    afterChangeCV() {
+        this.messageService.add({severity: 'success', summary: 'Success', detail: 'CV changed'});
+        this.fetchUserData();
+    }
+
+    getCVLink() {
+        return this.userService.getCVLink(this.userData.id, this.userData.cvPath);
     }
 }
