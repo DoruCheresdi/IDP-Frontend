@@ -57,6 +57,7 @@ import { AddEventComponent } from './pages/home/events-list/add-event/add-event.
 import {CalendarModule} from "primeng/calendar";
 import { EventRequestsListComponent } from './pages/home/events-list/event-requests-list/event-requests-list.component';
 import {DialogModule} from "primeng/dialog";
+import { NotificationListComponent } from './components/top-header/notification-list/notification-list.component';
 
 @NgModule({
     declarations: [
@@ -86,7 +87,8 @@ import {DialogModule} from "primeng/dialog";
         AddBenefitComponent,
         EventsListComponent,
         AddEventComponent,
-        EventRequestsListComponent
+        EventRequestsListComponent,
+        NotificationListComponent
     ],
     imports: [
         BrowserModule,

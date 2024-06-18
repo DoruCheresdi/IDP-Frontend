@@ -36,6 +36,9 @@
                 <p *ngIf="userIsAccepted(event)">
                     You are have been accepted and are participating to this event!
                 </p>
+                <p *ngIf="requestIsPending(event)">
+                    Your request is pending for this event.
+                </p>
             </div>
         </div>
         <app-add-event *ngIf="isOwner"

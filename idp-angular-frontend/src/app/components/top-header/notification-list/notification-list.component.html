@@ -1,0 +1,14 @@
+<p-button (click)="showDialog()" icon="pi pi-bell"></p-button>
+<p-dialog header="Notifications"
+          [(visible)]="modalVisible" [modal]="true"
+          [style]="{ width: '50vw' }"
+          [draggable]="false"
+          [resizable]="false">
+    <div>
+        <div *ngFor="let notification of notifications" class="">
+            <p>
+                {{notification.message}}
+            </p>
+        </div>
+    </div>
+</p-dialog>

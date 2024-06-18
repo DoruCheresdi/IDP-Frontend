@@ -21,6 +21,8 @@ export class UserService {
 
     public uploadCVPath = 'user/upload-cv';
 
+    public notificationsPath = 'user/notifications';
+
     constructor(private http: HttpClient,
                 private urlService: UrlService) { }
 
@@ -55,5 +57,9 @@ export class UserService {
 
     getTaxRedirectionFormLink(): string {
         return this.urlService.getUrl('assets/230_OPANAF_15_2021.pdf');
+    }
+
+    getNotifications(): Observable<any> {
+        return this.http.get<any>(this.urlService.getUrl(this.notificationsPath));
     }
 }

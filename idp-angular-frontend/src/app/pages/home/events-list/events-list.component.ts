@@ -109,4 +109,8 @@ export class EventsListComponent implements OnInit {
     userIsAccepted(event: VolEventDto): boolean {
         return event.requests.some(req => req.volunteer.email === this.authService.getOwnerEmail() && req.status === ReqStatus.ACCEPTED);
     }
+
+    requestIsPending(event: VolEventDto): boolean {
+        return event.requests.some(req => req.volunteer.email === this.authService.getOwnerEmail() && req.status === ReqStatus.PENDING);
+    }
 }
