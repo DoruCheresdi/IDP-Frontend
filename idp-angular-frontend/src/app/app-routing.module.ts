@@ -25,6 +25,7 @@ import {EditUserDataComponent} from "./pages/user/edit-user-data/edit-user-data.
 import {DomainsListComponent} from "./pages/general/domains/domains-list/domains-list.component";
 import {BenefitsListComponent} from "./pages/home/benefits-list/benefits-list.component";
 import {EventsListComponent} from "./pages/home/events-list/events-list.component";
+import {ChangePasswordComponent} from "./pages/user/change-password/change-password.component";
 
 // const routes: Routes = [{ path: '', component: HomeComponent, pathMatch: 'full' },
 //   {onSameUrlNavigation: 'reload'}];
@@ -49,6 +50,7 @@ import {EventsListComponent} from "./pages/home/events-list/events-list.componen
             { path: 'domains', component: DomainsListComponent, canActivate: [isAdminGuard]},
             { path: 'benefits', component: BenefitsListComponent, canActivate: [isAuthenticatedGuard]},
             { path: 'events', component: EventsListComponent, canActivate: [isAuthenticatedGuard]},
+            { path: 'change-password', component: ChangePasswordComponent, canActivate: [isAuthenticatedGuard]},
         ],
         {onSameUrlNavigation: 'reload'})],
     exports: [RouterModule]

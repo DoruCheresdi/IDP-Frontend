@@ -69,7 +69,7 @@ export class UserProfileComponent implements OnInit {
     }
 
     goToChangePassword() {
-
+        this.router.navigate(['/change-password']);
     }
 
     removeDomain(domain: DomainDto) {

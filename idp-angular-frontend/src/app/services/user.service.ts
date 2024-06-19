@@ -5,6 +5,7 @@ import {TokenResponse} from "../model/token-response";
 import {HttpClient} from "@angular/common/http";
 import {RegisterRequest} from "../dtos/register-request";
 import {UserResponse} from "../dtos/user-response";
+import {ChangePasswordDto} from "../pages/user/change-password/change-password-dto";
 
 @Injectable({
     providedIn: 'root'
@@ -61,5 +62,9 @@ export class UserService {
 
     getNotifications(): Observable<any> {
         return this.http.get<any>(this.urlService.getUrl(this.notificationsPath));
+    }
+
+    changePassword(dto: ChangePasswordDto): Observable<any> {
+        return this.http.post<any>(this.urlService.getUrl('user/change-password'), dto);
     }
 }
