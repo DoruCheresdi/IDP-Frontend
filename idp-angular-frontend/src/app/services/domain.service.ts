@@ -53,4 +53,8 @@ export class DomainService {
     removeUserFromDomain(dto: DomainUserReqDto) {
         return this.http.post(this.urlService.getUrl(this.removeUserToDomainPath), dto);
     }
+
+    removeDomain(domainId: string) {
+        return this.http.delete(this.urlService.getUrl(this.addDomainPath) + '/' + domainId);
+    }
 }

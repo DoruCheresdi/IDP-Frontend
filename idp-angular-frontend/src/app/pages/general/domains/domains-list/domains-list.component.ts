@@ -53,4 +53,21 @@ export class DomainsListComponent implements OnInit {
             }
         });
     }
+
+    removeDomain(domain: DomainDto) {
+        this.confirmationService.confirm({
+            message: 'Are you sure you want to delete this domain?',
+            accept: () => {
+                this.domainService.removeDomain(domain.id).subscribe({
+                    next: (response: any) => {
+                        this.fetchDomains();
+                        this.messageService.add({severity: 'success', summary: 'Success', detail: 'Domain removed successfully'});
+                    },
+                    error: (error: any) => {
+                        this.messageService.add({severity: 'error', summary: 'Error', detail: 'Could not remove domain'});
+                    }
+                });
+            }
+        });
+    }
 }
