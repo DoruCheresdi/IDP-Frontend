@@ -21,6 +21,10 @@
                         <div class="flex flex-column align-items-center sm:align-items-start gap-3">
                             <div class="text-xl font-bold text-900">{{ organisation.name }}</div>
                             <p-rating [(ngModel)]="organisation.averageRating" [readonly]="true" [cancel]="false"></p-rating>
+                            <p-tag icon="pi pi-star"
+                                   value="{{organisation.usersThatFavorited.length}}"
+                                   severity="warning">
+                            </p-tag>
                         </div>
                         <div class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
                             <button pButton icon="pi pi-arrow-right" class="md:align-self-end mb-2 p-button-rounded"
