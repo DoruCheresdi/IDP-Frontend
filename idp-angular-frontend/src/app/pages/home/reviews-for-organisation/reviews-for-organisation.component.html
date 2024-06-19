@@ -17,9 +17,17 @@
     </p-button>
 </div>
 <div *ngFor="let review of reviews">
-    <p-card>
+    <p-card *ngIf="review.byVolunteer" styleClass="bg-blue-100 pb-2">
         <div class="flex justify-content-between">
-            <h4>{{review.title}} by {{review.reviewerName}}</h4>
+            <h4>{{review.title}} by {{review.reviewerName}}.</h4>
+            <p-rating [readonly]="true" [stars]="5" [cancel]="false" [(ngModel)]="review.stars"></p-rating>
+        </div>
+        <p>This review was left by a volunteer at the organisation.</p>
+        <p>{{review.description}}</p>
+    </p-card>
+    <p-card *ngIf="!review.byVolunteer">
+        <div class="flex justify-content-between">
+            <h4>{{review.title}} by {{review.reviewerName}}.</h4>
             <p-rating [readonly]="true" [stars]="5" [cancel]="false" [(ngModel)]="review.stars"></p-rating>
         </div>
         <p>{{review.description}}</p>
