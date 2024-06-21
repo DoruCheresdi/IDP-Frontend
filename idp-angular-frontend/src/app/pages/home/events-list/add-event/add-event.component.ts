@@ -58,6 +58,11 @@ export class AddEventComponent implements OnInit {
         const date = this.addEventForm.value.date? this.addEventForm.value.date : new Date();
         const hours = this.addEventForm.value.hours? this.addEventForm.value.hours : '';
 
+        if (!name || !description || !location || !date || !hours) {
+            this.messageService.add({severity: 'error', summary: 'Error', detail: 'Please fill in all fields'});
+            return;
+        }
+
         const event = new VolEventDto('0', name, description, date, hours, location,
             [], [], this.organisationId);
 
