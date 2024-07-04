@@ -55,7 +55,7 @@ export class EditOrganisationComponent implements OnInit {
         const iban = this.editOrganisationFrom.controls['iban'].value as string;
         const id = this.editOrganisationFrom.controls['id'].value as string;
 
-        const orgRequest = new OrganisationEditRequest(name, description, iban, id);
+        const orgRequest = new OrganisationEditRequest(name, iban, description, id);
         this.organisationService.editOrganisation(orgRequest).subscribe({
                 next: data => {
                     this.messageService.add({severity: 'success', summary: 'Success', detail: 'Organisation edited successfully'});
